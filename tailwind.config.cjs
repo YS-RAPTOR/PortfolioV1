@@ -4,7 +4,8 @@ module.exports = {
 	theme: {
 		extend: {
             colors: {'Background' : "#000309", "Primary" : "#001F54"},
-            transitionDelay:{'0' : "0ms"}
+            transitionDelay:{'0' : "0ms"},
+            screens: {'bar': '850px'},
         },
 	},
 	plugins: [],
