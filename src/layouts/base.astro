@@ -1,0 +1,28 @@
+---
+import Footer from "../components/footer.astro";
+import NavBar from "../components/NavBar.astro";
+import Background from "../components/background";
+
+// Background
+// Primary
+// Cyan700
+// Teal 600
+// Green 500
+// Lime 300
+// Rose 200
+// Slate 50
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Yashan's Portfolio</title>
+    </head>
+    <body>
+        <Background fps={24} scale={7} client:load />
+        <slot />
+    </body>
+</html>
