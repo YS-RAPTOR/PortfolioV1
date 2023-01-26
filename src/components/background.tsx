@@ -8,7 +8,7 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
         if (!GOLCanvas) return;
 
         GOLCanvas.width = window.innerWidth;
-        GOLCanvas.height = window.innerHeight;
+        GOLCanvas.height = document.body.scrollHeight;
 
         const GOL = new GOLRender(GOLCanvas, scale);
 
@@ -27,7 +27,7 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
 
         addEventListener("resize", (event) => {
             GOLCanvas.width = window.innerWidth;
-            GOLCanvas.height = window.innerHeight;
+            GOLCanvas.height = document.body.scrollHeight;
             GOL.resize();
         });
 
