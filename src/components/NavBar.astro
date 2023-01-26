@@ -1,0 +1,41 @@
+---
+const tabs = ["HOME", "ABOUT", "MY PORTFOLIO", "CONTACTS"];
+const references = tabs.map(
+    (tab) => `#${tab.toLowerCase().replaceAll(" ", "-")}`
+);
+---
+
+<div class="relative">
+    <div
+        class="flex items-center justify-between backdrop-blur-sm relative min-w-full"
+    >
+        <div
+            class="bg-slate-50 w-12 h-12 my-3 mx-8 flex justify-center items-center"
+        >
+            LOGO
+        </div>
+        <nav class="flex space-x-10 justify-around my-3 mx-8">
+            {
+                tabs.map((tab, index) => (
+                    <a
+                        class="text-slate-50 my-3 text-base font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300"
+                        href={references[index]}
+                    >
+                        {tab}
+                    </a>
+                ))
+            }
+            <a
+                href="/resume"
+                class="border-2 border-lime-300 rounded-md px-5 py-2 my-1 text-base font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
+            >
+                RESUME
+            </a>
+        </nav>
+    </div>
+    <div class="h-1 w-auto flex">
+        <div class="w-5"></div>
+        <div class="bg-slate-50 w-full h-1/6"></div>
+        <div class="w-5"></div>
+    </div>
+</div>
