@@ -250,9 +250,9 @@ export default class GOLRender {
     };
 
     onMouseMove = (event: MouseEvent) => {
-        this.mouse.x = event.clientX;
+        this.mouse.x = event.pageX;
         // Invert Y
-        this.mouse.y = (this.size.height * this.scale) - event.clientY;
+        this.mouse.y = (this.size.height * this.scale) - event.pageY;
 
         this.mouse.z = event.buttons == 1 ? 1 : 0;
     }
@@ -321,7 +321,5 @@ export default class GOLRender {
 
         // Update GOL Material
         this.GOLMaterial.uniforms.uTexture!.value = this.backBuffer.texture;
-
-        // requestAnimationFrame(this.render);
     }
 }
