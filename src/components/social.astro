@@ -1,0 +1,23 @@
+---
+interface Socials {
+    svg: string;
+    link: string;
+}
+
+const socials: Socials[] = [
+    { svg: "/public/github.svg", link: "https://github.com/YS-RAPTOR" },
+    {
+        svg: "/public/linkedin.svg",
+        link: "https://www.linkedin.com/in/yashan-sumanaratne-8bb1491ab/",
+    },
+    { svg: "/public/email.svg", link: "mailto:yashan.sumanaratne@gmail.com" },
+];
+
+const { socialID, classes } = Astro.props;
+
+const social = socials[socialID];
+---
+
+<a href={social.link} target="_blank" rel="noopener noreferrer" class={classes}>
+    <img class="w-full h-full" src={social.svg} alt="socials" />
+</a>

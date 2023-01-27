@@ -1,20 +1,20 @@
 ---
-interface Socials {
-    svg: string;
-    link: string;
-}
-const socials: Socials[] = [{ svg: "", link: " " }];
+import Social from "./social.astro";
 
 const tabs = ["HOME", "ABOUT", "MY PORTFOLIO", "CONTACTS"];
 const references = tabs.map(
     (tab) => `#${tab.toLowerCase().replaceAll(" ", "-")}`
 );
+
+const socials = [0, 1, 2];
 ---
 
 <!-- NAV BAR -->
-<div class="top-0 w-screen flex justify-end sticky z-20 bar:block">
+<header
+    class="fixed top-0 right-0 flex justify-end bar:sticky z-20 mr-5 mt-5 bar:w-screen bar:block bar:m-0"
+>
     <div
-        class="mx-5 mt-5 -mb-16 rounded-xl max-w-fit flex backdrop-blur-md bar:justify-between bar:min-w-full bar:rounded-none bar:m-0 bar:transition-none"
+        class="rounded-xl max-w-fit flex backdrop-blur-md bar:justify-between bar:min-w-full bar:rounded-none bar:m-0 bar:transition-none"
     >
         <!-- HAMBURGER -->
         <a
@@ -62,47 +62,59 @@ const references = tabs.map(
         </nav>
     </div>
     <div class="hidden h-1 w-auto bar:flex">
-        <div class="bg-slate-50 w-full h-1/6 mx-5"></div>
+        <div class="bg-slate-50 w-full h-1/6 mx-5 opacity-30"></div>
     </div>
-</div>
+</header>
 
 <!-- SOCIALS DESKTOP -->
-<div></div>
+<div
+    class="hidden fixed bottom-0 left-0 flex-col justify-center items-center ml-5 bar:flex z-10"
+>
+    <div class="flex flex-col justify-center items-center space-y-5">
+        {
+            socials.map((social) => (
+                <Social socialID={social} classes="w-6 h-6" />
+            ))
+        }
+    </div>
+    <span class="w-0.5 h-[16vh] bg-slate-50 mt-2"></span>
+</div>
 
 <!-- SIDE NAV -->
 <div
-    class="origin-top-right translate-y-hamCenter -translate-x-hamCenter scale-0 transition-all duration-200 top-0 w-screen sticky z-10 -mt-bar h-screen bar:hidden"
+    class="-translate-x-hamCenter translate-y-hamCenter scale-0 origin-top-right transition-all duration-200 top-0 right-0 fixed z-10 h-screen flex flex-col w-full sm:w-1/2 backdrop-blur-md bar:hidden"
     id="nav"
 >
-    <div class="div flex-col flex h-full relative w-full">
-        <div
-            class="flex flex-col ml-auto w-1/2 backdrop-blur-md h-full transition-transform duration-200 ease-in-out"
-        >
-            <div
-                class="bg-slate-50 mt-5 justify-center items-center w-16 h-16 mr-auto flex ml-5"
-            >
-                LOGO
-            </div>
-            <nav class="items-center flex flex-col mx-auto flex-grow">
-                {
-                    tabs.map((tab, index) => (
-                        <a
-                            class="text-slate-50 mt-12 text-lg font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300"
-                            href={references[index]}
-                        >
-                            {tab}
-                        </a>
-                    ))
-                }
+    <div
+        class="bg-slate-50 mt-5 justify-center items-center w-16 h-16 mr-auto flex ml-5"
+    >
+        LOGO
+    </div>
+    <nav class="items-center flex flex-col mx-auto flex-grow">
+        {
+            tabs.map((tab, index) => (
                 <a
-                    href="/resume"
-                    class="my-auto px-12 py-4 justify-self-end border-2 border-lime-300 rounded-md text-lg font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
+                    class="text-slate-50 mt-12 text-lg font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300"
+                    href={references[index]}
                 >
-                    RESUME
+                    {tab}
                 </a>
-            </nav>
-            <!-- SOCIALS MOBILE -->
-        </div>
+            ))
+        }
+        <a
+            href="/resume"
+            class="my-auto px-12 py-4 justify-self-end border-2 border-lime-300 rounded-md text-lg font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
+        >
+            RESUME
+        </a>
+    </nav>
+    <!-- SOCIALS MOBILE -->
+    <div class="flex flex-row justify-center items-center space-x-5 mb-5">
+        {
+            socials.map((social) => (
+                <Social socialID={social} classes="w-9 h-9" />
+            ))
+        }
     </div>
 </div>
 

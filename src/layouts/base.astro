@@ -1,6 +1,6 @@
 ---
 import Footer from "../components/footer.astro";
-import NavBar from "../components/NavBar.astro";
+import Nav from "../components/nav.astro";
 import Background from "../components/background";
 
 // Background
@@ -21,10 +21,12 @@ import Background from "../components/background";
         <meta name="generator" content={Astro.generator} />
         <title>Yashan's Portfolio</title>
     </head>
-    <body>
-        <NavBar />
+    <body class="relative">
+        <Nav />
         <Background fps={24} scale={7} client:load />
-        <slot />
+        <div class="mr-24 bar:ml-16 bar:mr-0">
+            <slot />
+        </div>
         <Footer />
     </body>
 </html>
