@@ -1,0 +1,181 @@
+---
+import Social from "./social.astro";
+
+const tabs = ["HOME", "ABOUT", "MY PORTFOLIO", "CONTACTS"];
+const references = tabs.map(
+    (tab) => `#${tab.toLowerCase().replaceAll(" ", "-")}`
+);
+
+const socials = [0, 1, 2];
+---
+
+<!-- NAV BAR -->
+<header
+    class="fixed top-0 right-0 flex justify-end bar:sticky z-20 mr-5 mt-5 bar:w-screen bar:block bar:m-0"
+>
+    <div
+        class="rounded-xl max-w-fit flex backdrop-blur-md bar:justify-between bar:min-w-full bar:rounded-none bar:m-0 bar:transition-none"
+    >
+        <!-- HAMBURGER -->
+        <a
+            class="cursor-pointer border-slate-50 border-2 rounded-xl w-16 h-16 items-center justify-center flex bar:hidden"
+            id="hamburger"
+        >
+            <div
+                class="flex flex-col h-1/2 w-1/2 justify-around transition-transform duration-300"
+                id="hamburger-icon"
+            >
+                <span class="w-auto h-1 bg-slate-50 transition-all duration-200"
+                ></span>
+                <span class="w-auto h-1 bg-slate-50 transition- duration-200"
+                ></span>
+                <span class="w-auto h-1 bg-slate-50 transition-all duration-200"
+                ></span>
+            </div>
+        </a>
+
+        <!-- BAR INFO -->
+        <div
+            class="bg-slate-50 justify-center items-center hidden w-12 h-12 m-5 my-3 mx-8 bar:flex"
+        >
+            LOGO
+        </div>
+        <nav
+            class="hidden items-center space-x-10 justify-around my-3 mx-8 bar:flex"
+        >
+            {
+                tabs.map((tab, index) => (
+                    <a
+                        class="text-slate-50 font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300 my-3 text-base"
+                        href={references[index]}
+                    >
+                        {tab}
+                    </a>
+                ))
+            }
+            <a
+                href="/resume"
+                class="border-2 border-lime-300 rounded-md font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary my-1 px-5 py-2 text-base"
+            >
+                RESUME
+            </a>
+        </nav>
+    </div>
+    <div class="hidden h-1 w-auto bar:flex">
+        <div class="bg-slate-50 w-full h-1/6 mx-5 opacity-30"></div>
+    </div>
+</header>
+
+<!-- SOCIALS DESKTOP -->
+<div
+    class="hidden fixed bottom-0 left-0 flex-col justify-center items-center ml-5 bar:flex z-10"
+>
+    <div class="flex flex-col justify-center items-center space-y-5">
+        {
+            socials.map((social) => (
+                <Social socialID={social} classes="w-6 h-6" />
+            ))
+        }
+    </div>
+    <span class="w-0.5 h-[16vh] bg-slate-50 mt-2"></span>
+</div>
+
+<!-- SIDE NAV -->
+<div
+    class="-translate-x-hamCenter translate-y-hamCenter scale-0 origin-top-right transition-all duration-200 top-0 right-0 fixed z-10 h-screen flex flex-col w-full sm:w-1/2 backdrop-blur-md bar:hidden"
+    id="nav"
+>
+    <div
+        class="bg-slate-50 mt-5 justify-center items-center w-16 h-16 mr-auto flex ml-5"
+    >
+        LOGO
+    </div>
+    <nav class="items-center flex flex-col mx-auto flex-grow">
+        {
+            tabs.map((tab, index) => (
+                <a
+                    class="text-slate-50 mt-12 text-lg font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300"
+                    href={references[index]}
+                >
+                    {tab}
+                </a>
+            ))
+        }
+        <a
+            href="/resume"
+            class="my-auto px-12 py-4 justify-self-end border-2 border-lime-300 rounded-md text-lg font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
+        >
+            RESUME
+        </a>
+    </nav>
+    <!-- SOCIALS MOBILE -->
+    <div class="flex flex-row justify-center items-center space-x-5 mb-5">
+        {
+            socials.map((social) => (
+                <Social socialID={social} classes="w-9 h-9" />
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    let isOpen: boolean = false;
+    const main = () => {
+        const hamburger = document.getElementById("hamburger");
+        const hamburgerIcon = document.getElementById("hamburger-icon");
+        const bar = document.getElementById("nav");
+
+        if (hamburger == null || hamburgerIcon == null || bar == null) return;
+
+        const top = hamburgerIcon.children[0];
+        const mid = hamburgerIcon.children[1];
+        const bot = hamburgerIcon.children[2];
+
+        const toggleMenu = () => {
+            bar.classList.toggle("scale-0");
+            bar.classList.toggle("translate-y-hamCenter");
+            bar.classList.toggle("-translate-x-hamCenter");
+        };
+
+        const click = () => {
+            if (!isOpen) {
+                top.classList.toggle("translate-y-ham");
+                mid.classList.toggle("scale-0");
+                bot.classList.toggle("-translate-y-ham");
+                toggleMenu();
+
+                setTimeout(() => {
+                    top.classList.toggle("rotate-45");
+                    bot.classList.toggle("-rotate-45");
+                    mid.classList.toggle("hidden");
+                }, 200);
+
+                isOpen = true;
+            } else {
+                top.classList.toggle("rotate-45");
+                bot.classList.toggle("-rotate-45");
+                mid.classList.toggle("hidden");
+                toggleMenu();
+
+                setTimeout(() => {
+                    top.classList.toggle("translate-y-ham");
+                    mid.classList.toggle("scale-0");
+                    bot.classList.toggle("-translate-y-ham");
+                }, 200);
+                isOpen = false;
+            }
+        };
+
+        hamburger.addEventListener("click", (event) => {
+            click();
+        });
+
+        addEventListener("resize", (event) => {
+            if (window.innerWidth >= 850) {
+                if (isOpen) click();
+            }
+        });
+    };
+
+    main();
+</script>

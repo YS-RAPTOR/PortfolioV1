@@ -1,0 +1,35 @@
+<footer
+    id="footer"
+    class="relative h-32 mt-5 z-20 flex flex-col items-center backdrop-blur-lg bottom-0 w-full"
+>
+    <div class="h-1 w-full flex">
+        <div class="bg-slate-50 w-full h-1/6 mx-5 opacity-30"></div>
+    </div>
+    <div class="text-xl text-slate-50 my-auto">FOOTER</div>
+</footer>
+<div id="footer-placeholder" class="h-32 hidden"></div>
+
+<script>
+    const footer = document.getElementById("footer");
+    const footerPlaceholder = document.getElementById("footer-placeholder");
+
+    const main = () => {
+        if (footer === null || footerPlaceholder == null) return;
+
+        addEventListener("resize-correct", () => {
+            console.log("resize-correct");
+
+            if (window.innerHeight == document.body.scrollHeight) {
+                footer.classList.add("fixed");
+                footer.classList.remove("relative");
+                footerPlaceholder.classList.remove("hidden");
+            } else {
+                footer.classList.add("relative");
+                footer.classList.remove("fixed");
+                footerPlaceholder.classList.add("hidden");
+            }
+        });
+    };
+
+    main();
+</script>

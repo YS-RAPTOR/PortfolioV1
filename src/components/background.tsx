@@ -8,9 +8,12 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
         if (!GOLCanvas) return;
 
         GOLCanvas.width = window.innerWidth;
-        GOLCanvas.height = window.innerHeight;
+        GOLCanvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
 
         const GOL = new GOLRender(GOLCanvas, scale);
+
+        const correctResizeEvent = new Event("resize-correct");
+        dispatchEvent(correctResizeEvent);
 
         // Setting up Event Listeners   
 
@@ -29,6 +32,9 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
             GOLCanvas.width = window.innerWidth;
             GOLCanvas.height = window.innerHeight;
             GOL.resize();
+            GOLCanvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
+            GOL.resize();
+            dispatchEvent(correctResizeEvent);
         });
 
         setInterval(GOL.render, (1 / fps) * 1000);
