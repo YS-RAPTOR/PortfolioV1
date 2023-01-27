@@ -1,42 +1,24 @@
 ---
+interface Socials {
+    svg: string;
+    link: string;
+}
+const socials: Socials[] = [{ svg: "", link: " " }];
+
 const tabs = ["HOME", "ABOUT", "MY PORTFOLIO", "CONTACTS"];
 const references = tabs.map(
     (tab) => `#${tab.toLowerCase().replaceAll(" ", "-")}`
 );
 ---
 
-<div class="top-0 flex justify-end full sticky z-10 bar:block">
+<!-- NAV BAR -->
+<div class="top-0 w-screen flex justify-end sticky z-20 bar:block">
     <div
-        class="rounded-xl mx-5 mt-5 -mb-16 flex items-center backdrop-blur-md max-w-fit bar:justify-between bar:min-w-full bar:rounded-none bar:m-0"
+        class="mx-5 mt-5 -mb-16 rounded-xl max-w-fit flex backdrop-blur-md bar:justify-between bar:min-w-full bar:rounded-none bar:m-0 bar:transition-none"
     >
-        <!-- BAR -->
-        <div
-            class="bg-slate-50 w-12 h-12 my-3 mx-8 justify-center items-center hidden bar:flex"
-        >
-            LOGO
-        </div>
-        <nav class="space-x-10 justify-around my-3 mx-8 hidden bar:flex">
-            {
-                tabs.map((tab, index) => (
-                    <a
-                        class="text-slate-50 my-3 text-base font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300"
-                        href={references[index]}
-                    >
-                        {tab}
-                    </a>
-                ))
-            }
-            <a
-                href="/resume"
-                class="border-2 border-lime-300 rounded-md px-5 py-2 my-1 text-base font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
-            >
-                RESUME
-            </a>
-        </nav>
-
         <!-- HAMBURGER -->
         <a
-            class="cursor-pointer border-slate-50 border-2 rounded-xl w-16 h-16 items-center justify-center flex bar:hidden relative"
+            class="cursor-pointer border-slate-50 border-2 rounded-xl w-16 h-16 items-center justify-center flex bar:hidden"
             id="hamburger"
         >
             <div
@@ -51,9 +33,76 @@ const references = tabs.map(
                 ></span>
             </div>
         </a>
+
+        <!-- BAR INFO -->
+        <div
+            class="bg-slate-50 justify-center items-center hidden w-12 h-12 m-5 my-3 mx-8 bar:flex"
+        >
+            LOGO
+        </div>
+        <nav
+            class="hidden items-center space-x-10 justify-around my-3 mx-8 bar:flex"
+        >
+            {
+                tabs.map((tab, index) => (
+                    <a
+                        class="text-slate-50 font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300 my-3 text-base"
+                        href={references[index]}
+                    >
+                        {tab}
+                    </a>
+                ))
+            }
+            <a
+                href="/resume"
+                class="border-2 border-lime-300 rounded-md font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary my-1 px-5 py-2 text-base"
+            >
+                RESUME
+            </a>
+        </nav>
     </div>
     <div class="hidden h-1 w-auto bar:flex">
         <div class="bg-slate-50 w-full h-1/6 mx-5"></div>
+    </div>
+</div>
+
+<!-- SOCIALS DESKTOP -->
+<div></div>
+
+<!-- SIDE NAV -->
+<div
+    class="origin-top-right translate-y-hamCenter -translate-x-hamCenter scale-0 transition-all duration-200 top-0 w-screen sticky z-10 -mt-bar h-screen bar:hidden"
+    id="nav"
+>
+    <div class="div flex-col flex h-full relative w-full">
+        <div
+            class="flex flex-col ml-auto w-1/2 backdrop-blur-md h-full transition-transform duration-200 ease-in-out"
+        >
+            <div
+                class="bg-slate-50 mt-5 justify-center items-center w-16 h-16 mr-auto flex ml-5"
+            >
+                LOGO
+            </div>
+            <nav class="items-center flex flex-col mx-auto flex-grow">
+                {
+                    tabs.map((tab, index) => (
+                        <a
+                            class="text-slate-50 mt-12 text-lg font-bold underline underline-offset-4 duration-300 ease-in-out decoration-lime-300 hover:text-lime-300"
+                            href={references[index]}
+                        >
+                            {tab}
+                        </a>
+                    ))
+                }
+                <a
+                    href="/resume"
+                    class="my-auto px-12 py-4 justify-self-end border-2 border-lime-300 rounded-md text-lg font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
+                >
+                    RESUME
+                </a>
+            </nav>
+            <!-- SOCIALS MOBILE -->
+        </div>
     </div>
 </div>
 
@@ -62,18 +111,26 @@ const references = tabs.map(
     const main = () => {
         const hamburger = document.getElementById("hamburger");
         const hamburgerIcon = document.getElementById("hamburger-icon");
+        const bar = document.getElementById("nav");
 
-        if (hamburger == null || hamburgerIcon == null) return;
+        if (hamburger == null || hamburgerIcon == null || bar == null) return;
 
         const top = hamburgerIcon.children[0];
         const mid = hamburgerIcon.children[1];
         const bot = hamburgerIcon.children[2];
 
+        const toggleMenu = () => {
+            bar.classList.toggle("scale-0");
+            bar.classList.toggle("translate-y-hamCenter");
+            bar.classList.toggle("-translate-x-hamCenter");
+        };
+
         const click = () => {
             if (!isOpen) {
-                top.classList.toggle("translate-y-[7.5px]");
+                top.classList.toggle("translate-y-ham");
                 mid.classList.toggle("scale-0");
-                bot.classList.toggle("-translate-y-[7.5px]");
+                bot.classList.toggle("-translate-y-ham");
+                toggleMenu();
 
                 setTimeout(() => {
                     top.classList.toggle("rotate-45");
@@ -86,11 +143,12 @@ const references = tabs.map(
                 top.classList.toggle("rotate-45");
                 bot.classList.toggle("-rotate-45");
                 mid.classList.toggle("hidden");
+                toggleMenu();
 
                 setTimeout(() => {
-                    top.classList.toggle("translate-y-[7.5px]");
+                    top.classList.toggle("translate-y-ham");
                     mid.classList.toggle("scale-0");
-                    bot.classList.toggle("-translate-y-[7.5px]");
+                    bot.classList.toggle("-translate-y-ham");
                 }, 200);
                 isOpen = false;
             }
