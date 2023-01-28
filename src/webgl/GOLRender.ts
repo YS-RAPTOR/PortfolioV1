@@ -25,8 +25,8 @@ const Colors = [
 ];
 
 const numOfColors = Colors.length;
-const mouseMoveDistance = 0.002;
-const clickDistance = 0.003;
+const mouseMoveDistance = 15;
+const clickDistance = 30;
 const chance = 0.5;
 const randomChance = 0.000000001;
 
@@ -90,11 +90,16 @@ void main() {
     // If the Mouse is Near by Spawn Life
 
     vec2 mouse = vec2(uMouse.xy) / vec2(uScale) / uResolution;
+    mouse.x *= uResolution.x / uResolution.y;
+    float dist = uMouse.z > 0 ? float(${clickDistance}) : float(${mouseMoveDistance});
+    // Account for the scale/Aspect Ratio and the Resolution
+    dist /= float(uScale);
+    dist /= uResolution.x;
+    dist *= uResolution.x / uResolution.y;
 
-    float dist = uMouse.z > 0 ? ${clickDistance} : ${mouseMoveDistance};
-    dist *= float(uScale);
+    vec2 loc = vec2(vUvs.x * uResolution.x/uResolution.y,vUvs.y);
 
-    if(distance (vUvs, mouse) < dist && getRandom(vUvs) <= chanceToAccept){
+    if(distance (loc, mouse) < dist && getRandom(vUvs) <= chanceToAccept){
         gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }
 
