@@ -17,8 +17,6 @@
         if (footer === null || footerPlaceholder == null) return;
 
         addEventListener("resize-correct", () => {
-            console.log("resize-correct");
-
             if (window.innerHeight == document.body.scrollHeight) {
                 footer.classList.add("fixed");
                 footer.classList.remove("relative");
