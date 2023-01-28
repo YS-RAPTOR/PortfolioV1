@@ -10,7 +10,7 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
         GOLCanvas.width = window.innerWidth;
         GOLCanvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
 
-        const GOL = new GOLRender(GOLCanvas, scale);
+        const GOL = new GOLRender(GOLCanvas, scale, fps);
 
         const correctResizeEvent = new Event("resize-correct");
         dispatchEvent(correctResizeEvent);
@@ -37,7 +37,7 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
             dispatchEvent(correctResizeEvent);
         });
 
-        setInterval(GOL.render, (1 / fps) * 1000);
+        requestAnimationFrame(GOL.render);
     }, []);
 
     return (
