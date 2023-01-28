@@ -26,9 +26,8 @@ const Colors = [
 
 const numOfColors = Colors.length;
 const mouseMoveDistance = 15;
-const clickDistance = 30;
-const chance = 0.5;
-const randomChance = 0.000000001;
+const clickDistance = 25;
+const chance = 0.15;
 
 const vertSource = `
 varying vec2 vUvs;
@@ -47,8 +46,9 @@ uniform sampler2D uTexture;
 uniform vec2 uResolution;
 uniform ivec3 uMouse;
 uniform int uScale;
-uniform float uTime;
+uniform float uSeed;
 varying vec2 vUvs;
+uniform bool uGenerate;
 
 int getNeighbors(vec2 start){
     int neighbors = 0;
@@ -64,31 +64,33 @@ int getNeighbors(vec2 start){
 }
 
 float getRandom(vec2 pos){
-    return fract(sin(dot(pos + vec2(uTime), vec2(12.9898, 78.233))) * 43758.5453);
+    return fract(sin(dot(pos + vec2(uSeed), vec2(12.9898, 78.233))) * 43758.5453);
 }
 
 void main() {
-    int neighbors = getNeighbors(vUvs);
-    bool alive = texture2D(uTexture, vUvs).r > 0.5;
-    float health = texture2D(uTexture, vUvs).a;
-    health -= 1.0;
-    vec4 status = vec4(0.0, 0.0, 0.0, 0.0);
-
-    // Alive Conditions
-    if(alive && (neighbors == 2 || neighbors == 3)){
-        // Perfect Population
-        health += 2.0;
-        status = vec4(1.0);
-    } else if(!alive && neighbors == 3){
-        // Reproduction
-        health += 1.0;
-        status = vec4(1.0);
-    }
-    status.a = clamp(health, 0.0, ${numOfColors - 1}.0);
-    gl_FragColor = status;
+    gl_FragColor = texture2D(uTexture, vUvs);
+    if(uGenerate){
+        int neighbors = getNeighbors(vUvs);
+        bool alive = gl_FragColor.r > 0.5;
+        float health = gl_FragColor.a;
+        health -= 1.0;
+        vec4 status = vec4(0.0, 0.0, 0.0, 0.0);
     
-    // If the Mouse is Near by Spawn Life
+        // Alive Conditions
+        if(alive && (neighbors == 2 || neighbors == 3)){
+            // Perfect Population
+            health += 2.0;
+            status = vec4(1.0);
+        } else if(!alive && neighbors == 3){
+            // Reproduction
+            health += 1.0;
+            status = vec4(1.0);
+        }
+        status.a = clamp(health, 0.0, ${numOfColors - 1}.0);
+        gl_FragColor = status;
+    }
 
+    // If the Mouse is Near by Spawn Life
     vec2 mouse = vec2(uMouse.xy) / vec2(uScale) / uResolution;
     mouse.x *= uResolution.x / uResolution.y;
     float dist = uMouse.z > 0 ? float(${clickDistance}) : float(${mouseMoveDistance});
@@ -102,7 +104,6 @@ void main() {
     if(distance (loc, mouse) < dist && getRandom(vUvs) <= chanceToAccept){
         gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }
-
 }
 `;
 
@@ -123,6 +124,8 @@ export default class GOLRender {
     size: { height: number, width: number };
     canvas: HTMLCanvasElement;
     scale: number;
+    timing: number;
+    nextFrame: number = 0;
 
     // Scenes
     drawScene: THREE.Scene;
@@ -152,10 +155,11 @@ export default class GOLRender {
     frontBuffer: THREE.WebGLRenderTarget;
     backBuffer: THREE.WebGLRenderTarget;
 
-    constructor(canvas: HTMLCanvasElement, scale = 5) {
+    constructor(canvas: HTMLCanvasElement, scale = 5, fps = 24) {
         // Setting up size and resolution
         this.canvas = canvas;
         this.scale = scale;
+        this.timing = (1 / fps) * 1000;
         this.size = {
             height: canvas.height / this.scale,
             width: canvas.width / this.scale
@@ -210,7 +214,8 @@ export default class GOLRender {
                 uResolution: { value: this.resolution },
                 uMouse: { value: this.mouse },
                 uScale: { value: this.scale },
-                uTime: { value: 0 }
+                uSeed: { value: 0 },
+                uGenerate: { value: 1 }
             },
             vertexShader: vertSource,
             fragmentShader: GOLSource
@@ -306,8 +311,13 @@ export default class GOLRender {
     }
 
     render = () => {
+        if (this.nextFrame < Date.now()) {
+            this.GOLMaterial.uniforms.uGenerate!.value = 1;
+            this.nextFrame = Date.now() + this.timing;
+        }
+
         // Update Uniforms
-        this.GOLMaterial.uniforms.uTime!.value += 0.001;
+        this.GOLMaterial.uniforms.uSeed!.value += 0.001;
         this.GOLMaterial.uniforms.uMouse!.value = this.mouse;
 
         // Render to Front Buffer
@@ -326,5 +336,8 @@ export default class GOLRender {
 
         // Update GOL Material
         this.GOLMaterial.uniforms.uTexture!.value = this.backBuffer.texture;
+        this.GOLMaterial.uniforms.uGenerate!.value = 0;
+
+        requestAnimationFrame(this.render);
     }
 }
