@@ -11,6 +11,25 @@ module.exports = {
                 'hamCenter': '3.25rem',
                 'bar': '100vh',
                     },
+            keyframes: {
+                rubberBand:{
+                    '0%' : {transform: 'scale3d(1, 1, 1)'},
+                    '30%' : {transform: 'scale3d(1.25, 0.75, 1)'},
+                    '40%' : {transform: 'scale3d(0.75, 1.25, 1)'},
+                    '50%' : {transform: 'scale3d(1.15, 0.85, 1)'},
+                    '65%' : {transform: 'scale3d(0.95, 1.05, 1)'},
+                    '75%' : {transform: 'scale3d(1.05, 0.95, 1)'},
+                    '100%' : {transform: 'scale3d(1, 1, 1)'},
+                },
+                wiggle: {
+                    '0%, 100%': { transform: 'rotate(-3deg)' },
+                    '50%': { transform: 'rotate(3deg)' },
+                }
+            },
+            animation: {
+                'rubberBand': 'rubberBand 1s ease-in-out forwards',
+                'wiggle': 'wiggle 1s ease-in-out forwards',
+            }
         },
 	},
 	plugins: [],
