@@ -32,9 +32,13 @@ const Background = ({ fps, scale = 5 }: { fps: number, scale: number }) => {
             GOLCanvas.width = window.innerWidth;
             GOLCanvas.height = window.innerHeight;
             GOL.resize();
+            dispatchEvent(correctResizeEvent);
+        });
+
+        addEventListener("resize-correct", (event) => {
+            GOLCanvas.width = window.innerWidth;
             GOLCanvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
             GOL.resize();
-            dispatchEvent(correctResizeEvent);
         });
 
         requestAnimationFrame(GOL.render);
