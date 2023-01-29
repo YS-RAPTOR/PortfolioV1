@@ -10,7 +10,7 @@ export default class SkillCubeRender {
     skills: string[];
 
     scene: THREE.Scene;
-    camera: THREE.PerspectiveCamera;
+    camera: THREE.Camera;
 
     renderer: THREE.WebGLRenderer;
     fontLoader: FontLoader;
@@ -31,7 +31,7 @@ export default class SkillCubeRender {
 
         this.scene.fog = new THREE.FogExp2(0xfecdd3, 0.022);
 
-        this.camera = new THREE.PerspectiveCamera(75, this.size / this.size, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(75, this.size / this.size, 0.1, 100);
         this.camera.position.set(0, 0, 40);
 
         this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true });
@@ -46,12 +46,12 @@ export default class SkillCubeRender {
     }
 
     async loadText(font: any, size: number) {
-        const points = this.getSphere(18, this.skills.length);
+        const points = this.getSphere(20, this.skills.length);
 
         this.skills.forEach((skill, index) => {
             const textGeometry = new TextGeometry(skill, {
                 font: font,
-                size: size,
+                size: 1,
                 height: 0,
             });
 
@@ -61,8 +61,8 @@ export default class SkillCubeRender {
             textGeometry.computeBoundingBox();
             if (textGeometry.boundingBox === null) return;
 
-            const x = points[index].x - ((textGeometry.boundingBox.max.y - textGeometry.boundingBox.min.y) / 2);
-            const y = points[index].y - (textGeometry.boundingBox.max.x / 2);
+            const x = points[index].x - ((textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x) / 2);
+            const y = points[index].y - ((textGeometry.boundingBox.max.y - textGeometry.boundingBox.min.y) / 2);
 
             textMesh.position.set(x, y, points[index].z);
             this.meshes.push(textMesh);

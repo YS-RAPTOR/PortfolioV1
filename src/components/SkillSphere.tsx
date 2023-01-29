@@ -45,7 +45,7 @@ const SkillCube = ({ skills, size }: { skills: string[], size: number }) => {
     }, []);
 
     return (
-        <canvas id="Skills" />
+        <canvas id="Skills" className="border-l-rose-50 border-2" />
     );
 };
 
