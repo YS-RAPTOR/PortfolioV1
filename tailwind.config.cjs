@@ -21,14 +21,14 @@ module.exports = {
                     '75%' : {transform: 'scale3d(1.05, 0.95, 1)'},
                     '100%' : {transform: 'scale3d(1, 1, 1)'},
                 },
-                wiggle: {
-                    '0%, 100%': { transform: 'rotate(-3deg)' },
-                    '50%': { transform: 'rotate(3deg)' },
+                PopIn: {
+                    '0%': {opacity : '0', transform: 'translate3d(1rem, 0, 0)'},
+                    '100%' : {opacity : '1', transform: 'translate3d(0, 0, 0)'},
                 }
             },
             animation: {
                 'rubberBand': 'rubberBand 1s ease-in-out forwards',
-                'wiggle': 'wiggle 1s ease-in-out forwards',
+                'PopIn': 'PopIn 1s ease-in-out forwards',
             }
         },
 	},

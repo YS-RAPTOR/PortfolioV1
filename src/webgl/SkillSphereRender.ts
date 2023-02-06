@@ -18,7 +18,7 @@ export default class SkillCubeRender {
 
     rotate = false;
     velocity = new THREE.Vector2();
-    mouseloc = new THREE.Vector2();
+    mouseLoc = new THREE.Vector2();
     temp = new THREE.Vector3();
 
     constructor(canvas: HTMLCanvasElement, skills: string[], size = 1) {
@@ -45,7 +45,7 @@ export default class SkillCubeRender {
         });
     }
 
-    async loadText(font: any, size: number) {
+    loadText(font: any, size: number) {
         const points = this.getSphere(20, this.skills.length);
 
         this.skills.forEach((skill, index) => {
@@ -109,8 +109,8 @@ export default class SkillCubeRender {
         const x = event.clientX - xCenter;
         const y = event.clientY - yCenter;
 
-        this.mouseloc.x = x;
-        this.mouseloc.y = y;
+        this.mouseLoc.x = x;
+        this.mouseLoc.y = y;
 
     }
 
@@ -128,10 +128,10 @@ export default class SkillCubeRender {
         this.scene.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), this.velocity.y);
 
         if (this.rotate) {
-            // Speed Up unitl MouseLoc/80000
+            // Speed Up until MouseLoc/80000
 
-            this.velocity.x += (this.mouseloc.x / 80000 - this.velocity.x) * 0.01;
-            this.velocity.y += (this.mouseloc.y / 80000 - this.velocity.y) * 0.01;
+            this.velocity.x += (this.mouseLoc.x / 80000 - this.velocity.x) * 0.01;
+            this.velocity.y += (this.mouseLoc.y / 80000 - this.velocity.y) * 0.01;
 
         } else {
             // Slow Down
