@@ -1,12 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
-import BouncyText from "../components/BouncyText.astro";
+import BouncyText from "../components/BouncyText";
 import SkillCube from "../components/SkillSphere";
 ---
 
 <Base>
     <h1 class="text-slate-50 text-8xl font-bold">
-        <BouncyText text="Hello World PopIn" />
+        <BouncyText client:load text="Hello World PopIn" />
     </h1>
     <h1 class="text-xl">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus,
@@ -63,9 +63,6 @@ import SkillCube from "../components/SkillSphere";
         delectus, sint minus id consectetur corrupti vel neque temporibus error
         porro similique, natus cum minima. Id consequatur illum facere nemo? Id
         distinctio vero non repellat sed beatae?
-    </h1>
-    <h1 class="text-slate-50 text-8xl font-bold">
-        <BouncyText text="Hello World PopIn" />
     </h1>
 </Base>
 
