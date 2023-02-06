@@ -5,23 +5,23 @@ import * as THREE from "three";
 
 // Color Scheme 1
 const Colors = [
-  new THREE.Color(0x000309), // Dead Color
-  new THREE.Color(0x001f54),
-  new THREE.Color(0x001f54),
-  new THREE.Color(0x0e7490),
-  new THREE.Color(0x0d9488),
-  new THREE.Color(0x0d9488),
-  new THREE.Color(0x22c55e),
-  new THREE.Color(0xbef264),
-  new THREE.Color(0xfecdd3),
-  new THREE.Color(0xbef264),
-  new THREE.Color(0x0e7490),
-  new THREE.Color(0x22c55e),
-  new THREE.Color(0x0d9488),
-  new THREE.Color(0x0d9488),
-  new THREE.Color(0x1e40af),
-  new THREE.Color(0x001f54),
-  new THREE.Color(0x000309), // Static Color
+    new THREE.Color(0x000309), // Dead Color
+    new THREE.Color(0x001f54),
+    new THREE.Color(0x001f54),
+    new THREE.Color(0x0e7490),
+    new THREE.Color(0x0d9488),
+    new THREE.Color(0x0d9488),
+    new THREE.Color(0x22c55e),
+    new THREE.Color(0xbef264),
+    new THREE.Color(0xfecdd3),
+    new THREE.Color(0xbef264),
+    new THREE.Color(0x0e7490),
+    new THREE.Color(0x22c55e),
+    new THREE.Color(0x0d9488),
+    new THREE.Color(0x0d9488),
+    new THREE.Color(0x1e40af),
+    new THREE.Color(0x001f54),
+    new THREE.Color(0x000309), // Static Color
 ];
 
 const numOfColors = Colors.length;
@@ -120,241 +120,241 @@ void main() {
 `;
 
 export default class GOLRender {
-  // Variables
-  size: { height: number; width: number };
-  canvas: HTMLCanvasElement;
-  scale: number;
-  timing: number;
-  nextFrame: number = 0;
+    // Variables
+    size: { height: number; width: number };
+    canvas: HTMLCanvasElement;
+    scale: number;
+    timing: number;
+    nextFrame: number = 0;
 
-  // Scenes
-  drawScene: THREE.Scene;
-  GOLScene: THREE.Scene;
+    // Scenes
+    drawScene: THREE.Scene;
+    GOLScene: THREE.Scene;
 
-  // Textures
-  initialTexture: THREE.DataTexture;
+    // Textures
+    initialTexture: THREE.DataTexture;
 
-  // Uniforms
-  resolution: THREE.Vector2;
-  mouse: THREE.Vector3;
+    // Uniforms
+    resolution: THREE.Vector2;
+    mouse: THREE.Vector3;
 
-  // Geometry and Materials
-  geometry: THREE.PlaneGeometry;
-  quadMaterial: THREE.ShaderMaterial;
-  GOLMaterial: THREE.ShaderMaterial;
-  quad: THREE.Mesh;
-  GOLMesh: THREE.Mesh;
+    // Geometry and Materials
+    geometry: THREE.PlaneGeometry;
+    quadMaterial: THREE.ShaderMaterial;
+    GOLMaterial: THREE.ShaderMaterial;
+    quad: THREE.Mesh;
+    GOLMesh: THREE.Mesh;
 
-  // Camera
-  camera: THREE.OrthographicCamera;
+    // Camera
+    camera: THREE.OrthographicCamera;
 
-  // Renderer
-  renderer: THREE.WebGLRenderer;
+    // Renderer
+    renderer: THREE.WebGLRenderer;
 
-  // Buffers
-  frontBuffer: THREE.WebGLRenderTarget;
-  backBuffer: THREE.WebGLRenderTarget;
+    // Buffers
+    frontBuffer: THREE.WebGLRenderTarget;
+    backBuffer: THREE.WebGLRenderTarget;
 
-  constructor(canvas: HTMLCanvasElement, scale = 5, fps = 24) {
-    // Setting up size and resolution
-    this.canvas = canvas;
-    this.scale = scale;
-    this.timing = (1 / fps) * 1000;
-    this.size = {
-      height: canvas.height / this.scale,
-      width: canvas.width / this.scale,
+    constructor(canvas: HTMLCanvasElement, scale = 5, fps = 24) {
+        // Setting up size and resolution
+        this.canvas = canvas;
+        this.scale = scale;
+        this.timing = (1 / fps) * 1000;
+        this.size = {
+            height: canvas.height / this.scale,
+            width: canvas.width / this.scale,
+        };
+
+        this.resolution = new THREE.Vector2(this.size.width, this.size.height);
+
+        // Setting up Buffers
+        this.frontBuffer = new THREE.WebGLRenderTarget(
+            this.size.width,
+            this.size.height,
+            {
+                minFilter: THREE.NearestFilter,
+                magFilter: THREE.NearestFilter,
+                format: THREE.RGBAFormat,
+                type: THREE.FloatType,
+                stencilBuffer: false,
+            }
+        );
+
+        this.backBuffer = new THREE.WebGLRenderTarget(
+            this.size.width,
+            this.size.height,
+            {
+                minFilter: THREE.NearestFilter,
+                magFilter: THREE.NearestFilter,
+                format: THREE.RGBAFormat,
+                type: THREE.FloatType,
+                stencilBuffer: false,
+            }
+        );
+
+        // setting up scenes
+        this.drawScene = new THREE.Scene();
+        this.GOLScene = new THREE.Scene();
+
+        // Setting up initial random state
+        this.initialTexture = this.createRandomTexture();
+
+        // Setting up mouse
+        this.mouse = new THREE.Vector3(-100, -100, 0);
+
+        // Setting up geometry and materials
+        this.geometry = new THREE.PlaneGeometry(2, 2);
+
+        this.quadMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                uTexture: { value: null },
+                uColor: { value: Colors },
+            },
+            vertexShader: vertSource,
+            fragmentShader: drawSource,
+        });
+
+        this.GOLMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                uTexture: { value: this.initialTexture },
+                uResolution: { value: this.resolution },
+                uMouse: { value: this.mouse },
+                uScale: { value: this.scale },
+                uSeed: { value: 0 },
+                uGenerate: { value: 1 },
+            },
+            vertexShader: vertSource,
+            fragmentShader: GOLSource,
+        });
+
+        this.quad = new THREE.Mesh(this.geometry, this.quadMaterial);
+        this.drawScene.add(this.quad);
+
+        this.GOLMesh = new THREE.Mesh(this.geometry, this.GOLMaterial);
+        this.GOLScene.add(this.GOLMesh);
+
+        // Setting up Camera
+        this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+        // Setting up Renderer
+        this.renderer = new THREE.WebGLRenderer({ canvas: canvas });
+        this.renderer.setPixelRatio(1);
+        this.renderer.setSize(
+            this.size.width * this.scale,
+            this.size.height * this.scale
+        );
+    }
+
+    createRandomTexture = (chance = 0.3): THREE.DataTexture => {
+        const data = new Uint8Array(this.size.width * this.size.height * 4);
+
+        for (let i = 0; i < data.length; i += 4) {
+            if (Math.random() > chance) {
+                data[i] = 255;
+                data[i + 1] = 255;
+                data[i + 2] = 255;
+                data[i + 3] = 255;
+            } else {
+                data[i] = 0;
+                data[i + 1] = 0;
+                data[i + 2] = 0;
+                data[i + 3] = 0;
+            }
+        }
+
+        const texture = new THREE.DataTexture(
+            data,
+            this.size.width,
+            this.size.height,
+            THREE.RGBAFormat,
+            THREE.UnsignedByteType
+        );
+        texture.needsUpdate = true;
+        return texture;
     };
 
-    this.resolution = new THREE.Vector2(this.size.width, this.size.height);
+    onMouseMove = (event: MouseEvent) => {
+        this.mouse.x = event.pageX;
+        // Invert Y
+        this.mouse.y = this.size.height * this.scale - event.pageY;
 
-    // Setting up Buffers
-    this.frontBuffer = new THREE.WebGLRenderTarget(
-      this.size.width,
-      this.size.height,
-      {
-        minFilter: THREE.NearestFilter,
-        magFilter: THREE.NearestFilter,
-        format: THREE.RGBAFormat,
-        type: THREE.FloatType,
-        stencilBuffer: false,
-      }
-    );
-
-    this.backBuffer = new THREE.WebGLRenderTarget(
-      this.size.width,
-      this.size.height,
-      {
-        minFilter: THREE.NearestFilter,
-        magFilter: THREE.NearestFilter,
-        format: THREE.RGBAFormat,
-        type: THREE.FloatType,
-        stencilBuffer: false,
-      }
-    );
-
-    // setting up scenes
-    this.drawScene = new THREE.Scene();
-    this.GOLScene = new THREE.Scene();
-
-    // Setting up initial random state
-    this.initialTexture = this.createRandomTexture();
-
-    // Setting up mouse
-    this.mouse = new THREE.Vector3(-100, -100, 0);
-
-    // Setting up geometry and materials
-    this.geometry = new THREE.PlaneGeometry(2, 2);
-
-    this.quadMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        uTexture: { value: null },
-        uColor: { value: Colors },
-      },
-      vertexShader: vertSource,
-      fragmentShader: drawSource,
-    });
-
-    this.GOLMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        uTexture: { value: this.initialTexture },
-        uResolution: { value: this.resolution },
-        uMouse: { value: this.mouse },
-        uScale: { value: this.scale },
-        uSeed: { value: 0 },
-        uGenerate: { value: 1 },
-      },
-      vertexShader: vertSource,
-      fragmentShader: GOLSource,
-    });
-
-    this.quad = new THREE.Mesh(this.geometry, this.quadMaterial);
-    this.drawScene.add(this.quad);
-
-    this.GOLMesh = new THREE.Mesh(this.geometry, this.GOLMaterial);
-    this.GOLScene.add(this.GOLMesh);
-
-    // Setting up Camera
-    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-    // Setting up Renderer
-    this.renderer = new THREE.WebGLRenderer({ canvas: canvas });
-    this.renderer.setPixelRatio(1);
-    this.renderer.setSize(
-      this.size.width * this.scale,
-      this.size.height * this.scale
-    );
-  }
-
-  createRandomTexture = (chance = 0.3): THREE.DataTexture => {
-    const data = new Uint8Array(this.size.width * this.size.height * 4);
-
-    for (let i = 0; i < data.length; i += 4) {
-      if (Math.random() > chance) {
-        data[i] = 255;
-        data[i + 1] = 255;
-        data[i + 2] = 255;
-        data[i + 3] = 255;
-      } else {
-        data[i] = 0;
-        data[i + 1] = 0;
-        data[i + 2] = 0;
-        data[i + 3] = 0;
-      }
-    }
-
-    const texture = new THREE.DataTexture(
-      data,
-      this.size.width,
-      this.size.height,
-      THREE.RGBAFormat,
-      THREE.UnsignedByteType
-    );
-    texture.needsUpdate = true;
-    return texture;
-  };
-
-  onMouseMove = (event: MouseEvent) => {
-    this.mouse.x = event.pageX;
-    // Invert Y
-    this.mouse.y = this.size.height * this.scale - event.pageY;
-
-    this.mouse.z = event.buttons == 1 ? 1 : 0;
-  };
-
-  onTouch = (event: TouchEvent) => {
-    if (event.touches.length < 1 || !event.touches[0]) {
-      this.mouse.x = -100;
-      this.mouse.y = -100;
-      return;
-    }
-    this.mouse.x = event.touches[0].clientX;
-    // Invert Y
-    this.mouse.y = this.size.height * this.scale - event.touches[0].clientY;
-
-    this.mouse.z = 1;
-  };
-
-  onTouchEnd = () => {
-    this.mouse.x = -100;
-    this.mouse.y = -100;
-    this.mouse.z = 0;
-  };
-
-  resize = () => {
-    // Change the Variables
-    this.size = {
-      height: this.canvas.height / this.scale,
-      width: this.canvas.width / this.scale,
+        this.mouse.z = event.buttons == 1 ? 1 : 0;
     };
 
-    this.resolution = new THREE.Vector2(this.size.width, this.size.height);
+    onTouch = (event: TouchEvent) => {
+        if (event.touches.length < 1 || !event.touches[0]) {
+            this.mouse.x = -100;
+            this.mouse.y = -100;
+            return;
+        }
+        this.mouse.x = event.touches[0].clientX;
+        // Invert Y
+        this.mouse.y = this.size.height * this.scale - event.touches[0].clientY;
 
-    // Resize the Buffers without losing data
-    this.frontBuffer.setSize(this.size.width, this.size.height);
-    this.backBuffer.setSize(this.size.width, this.size.height);
+        this.mouse.z = 1;
+    };
 
-    const tex = this.createRandomTexture(0.3);
-    this.GOLMaterial.uniforms.uTexture!.value = tex;
-    this.quadMaterial.uniforms.uTexture!.value = tex;
+    onTouchEnd = () => {
+        this.mouse.x = -100;
+        this.mouse.y = -100;
+        this.mouse.z = 0;
+    };
 
-    // Resize the Renderer
-    this.renderer.setSize(
-      this.size.width * this.scale,
-      this.size.height * this.scale
-    );
+    resize = () => {
+        // Change the Variables
+        this.size = {
+            height: this.canvas.height / this.scale,
+            width: this.canvas.width / this.scale,
+        };
 
-    // Update Uniforms
-    this.GOLMaterial.uniforms.uResolution!.value = this.resolution;
-  };
+        this.resolution = new THREE.Vector2(this.size.width, this.size.height);
 
-  render = () => {
-    if (this.nextFrame < Date.now()) {
-      this.GOLMaterial.uniforms.uGenerate!.value = 1;
-      this.nextFrame = Date.now() + this.timing;
-    }
+        // Resize the Buffers without losing data
+        this.frontBuffer.setSize(this.size.width, this.size.height);
+        this.backBuffer.setSize(this.size.width, this.size.height);
 
-    // Update Uniforms
-    this.GOLMaterial.uniforms.uSeed!.value += 0.001;
-    this.GOLMaterial.uniforms.uMouse!.value = this.mouse;
+        const tex = this.createRandomTexture(0.3);
+        this.GOLMaterial.uniforms.uTexture!.value = tex;
+        this.quadMaterial.uniforms.uTexture!.value = tex;
 
-    // Render to Front Buffer
-    this.renderer.setRenderTarget(this.frontBuffer);
-    this.renderer.render(this.GOLScene, this.camera);
+        // Resize the Renderer
+        this.renderer.setSize(
+            this.size.width * this.scale,
+            this.size.height * this.scale
+        );
 
-    // Render to Screen
-    this.quadMaterial.uniforms.uTexture!.value = this.frontBuffer.texture;
-    this.renderer.setRenderTarget(null);
-    this.renderer.render(this.drawScene, this.camera);
+        // Update Uniforms
+        this.GOLMaterial.uniforms.uResolution!.value = this.resolution;
+    };
 
-    // Swap Buffers
-    const temp = this.frontBuffer;
-    this.frontBuffer = this.backBuffer;
-    this.backBuffer = temp;
+    render = () => {
+        if (this.nextFrame < Date.now()) {
+            this.GOLMaterial.uniforms.uGenerate!.value = 1;
+            this.nextFrame = Date.now() + this.timing;
+        }
 
-    // Update GOL Material
-    this.GOLMaterial.uniforms.uTexture!.value = this.backBuffer.texture;
-    this.GOLMaterial.uniforms.uGenerate!.value = 0;
+        // Update Uniforms
+        this.GOLMaterial.uniforms.uSeed!.value += 0.001;
+        this.GOLMaterial.uniforms.uMouse!.value = this.mouse;
 
-    requestAnimationFrame(this.render);
-  };
+        // Render to Front Buffer
+        this.renderer.setRenderTarget(this.frontBuffer);
+        this.renderer.render(this.GOLScene, this.camera);
+
+        // Render to Screen
+        this.quadMaterial.uniforms.uTexture!.value = this.frontBuffer.texture;
+        this.renderer.setRenderTarget(null);
+        this.renderer.render(this.drawScene, this.camera);
+
+        // Swap Buffers
+        const temp = this.frontBuffer;
+        this.frontBuffer = this.backBuffer;
+        this.backBuffer = temp;
+
+        // Update GOL Material
+        this.GOLMaterial.uniforms.uTexture!.value = this.backBuffer.texture;
+        this.GOLMaterial.uniforms.uGenerate!.value = 0;
+
+        requestAnimationFrame(this.render);
+    };
 }
