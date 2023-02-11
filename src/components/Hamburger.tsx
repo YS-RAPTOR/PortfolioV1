@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const hamDelay = 0.6;
 
@@ -18,7 +17,7 @@ const variantHamTop = {
         transition: {
             times: [0.5, 1],
             duration: 0.2,
-            delay: hamDelay
+            delay: hamDelay,
         },
     },
 };

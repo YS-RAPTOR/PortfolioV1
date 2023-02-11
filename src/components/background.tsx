@@ -1,18 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import GOLRender from "../webgl/GOLRender";
 
 const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
+
+    const GOLCanvasRef = useRef<HTMLCanvasElement>(null);
+
     useEffect(() => {
-        const GOLCanvas = document.getElementById("GOL") as HTMLCanvasElement;
-        if (!GOLCanvas) return;
+        const GOLCanvas = GOLCanvasRef.current!;
 
         GOLCanvas.width = window.innerWidth;
-        GOLCanvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
+        GOLCanvas.height = Math.max(
+            document.body.scrollHeight,
+            window.innerHeight
+        );
 
         const GOL = new GOLRender(GOLCanvas, scale, fps);
-
-        const correctResizeEvent = new Event("resize-correct");
-        dispatchEvent(correctResizeEvent);
 
         // Setting up Event Listeners
 
@@ -31,23 +33,24 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
             GOLCanvas.width = window.innerWidth;
             GOLCanvas.height = window.innerHeight;
             GOL.resize();
-            dispatchEvent(correctResizeEvent);
-        });
-
-        addEventListener("resize-correct", (event) => {
             GOLCanvas.width = window.innerWidth;
             GOLCanvas.height = Math.max(
                 document.body.scrollHeight,
                 window.innerHeight
             );
             GOL.resize();
+
+            dispatchEvent(new Event("resize-correct"));
         });
 
         requestAnimationFrame(GOL.render);
     }, []);
 
     return (
-        <canvas id="GOL" className="absolute top-0 left-0 -z-10 h-full w-full" />
+        <canvas
+            id="GOL" ref={GOLCanvasRef}
+            className="absolute top-0 left-0 -z-10 h-full w-full"
+        />
     );
 };
 

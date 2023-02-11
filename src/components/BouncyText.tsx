@@ -53,7 +53,7 @@ const BouncyText = ({
             viewport={{ once: false, amount: 0.2 }}
         >
             {text
-                .replace(" ", "\u00A0")
+                .replaceAll(" ", "\u00A0")
                 .split("")
                 .map((char, index) => {
                     return (

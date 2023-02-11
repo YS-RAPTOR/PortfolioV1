@@ -6,6 +6,10 @@ module.exports = {
 			colors: { Background: "#000309", Primary: "#001F54" },
 			transitionDelay: { 0: "0ms" },
 			screens: { bar: "850px" },
+			spacing: {
+				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				WindowWithoutTitleBar: "calc(24rem - 1.5rem - 0.75rem)", // 1.5rem is the titleBar size, 0.75rem is the padding
+			},
 			keyframes: {
 				rubberBand: {
 					"0%": { transform: "scale3d(1, 1, 1)" },

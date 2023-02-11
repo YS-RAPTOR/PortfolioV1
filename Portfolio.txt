@@ -1,0 +1,18 @@
+lNOTE:::::::Go for more rigid animations than smooth and buttery feeling animations. Springy animation is ill advised
+
+> Headings Entrance - staggered fade in from side with effect Glitch-Side/ Fade up with Glitch-Random
+> Headings Hover - Shuffle
+
+> For lists go with a terminal with terminal animation. (Basically only used to list skills)
+
+> Icons(Assuming has link) use glow effect which looked cool. Neon Green Glow maybe
+
+For Projects Card Windows Maximize Effect as Entrance with terminal animation for Text that is pretty fast (Maybe vertical cursor also) and glitch(random or side) for title
+Minimize Effect when close to exit
+
+Paragraphs - Random Glitch with Fade up might look good
+
+Links - Make Color Transparent, Underline(Maybe) and outline the text
+
+Header  - Not as happy
+        - Maybe Experiment with the Header. More computery

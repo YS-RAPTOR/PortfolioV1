@@ -1,17 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import SkillCubeRender from "../webgl/SkillSphereRender";
 
 const SkillCube = ({ skills, size }: { skills: string[]; size: number }) => {
     // Account for border/padding
+
+    const SkillSphereCanvasRef = useRef<HTMLCanvasElement>(null);
 
     const AccountForPadding = (size: number) => {
         return size - 2 * 2;
     };
 
     useEffect(() => {
-        const SkillSphereCanvas = document.getElementById(
-            "Skills"
-        ) as HTMLCanvasElement;
+        const SkillSphereCanvas = SkillSphereCanvasRef.current!;
 
         if (!SkillSphereCanvas) return;
 
@@ -22,7 +22,7 @@ const SkillCube = ({ skills, size }: { skills: string[]; size: number }) => {
         SkillSphereCanvas.height = AccountForPadding(
             Math.min(window.innerWidth, size)
         );
-        dispatchEvent(new Event("resize-correct"));
+        dispatchEvent(new Event("resize"));
 
         const SC = new SkillCubeRender(SkillSphereCanvas, skills);
 
@@ -39,7 +39,7 @@ const SkillCube = ({ skills, size }: { skills: string[]; size: number }) => {
             SC.onMouseMove(event);
         });
 
-        addEventListener("resize", (event) => {
+        addEventListener("resize-correct", (event) => {
             // Have max width but no min width
             SkillSphereCanvas.width = AccountForPadding(
                 Math.min(window.innerWidth, size)
@@ -51,7 +51,7 @@ const SkillCube = ({ skills, size }: { skills: string[]; size: number }) => {
         });
     }, []);
 
-    return <canvas id="Skills" className="border-2 border-l-rose-50" />;
+    return <canvas ref={SkillSphereCanvasRef} className="border-2 border-l-rose-50" />;
 };
 
 export default SkillCube;
