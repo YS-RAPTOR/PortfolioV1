@@ -1,90 +1,88 @@
-import { useRef, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Window from "./Window"
-import Maximize from "./Maximize"
+import { motion, AnimatePresence } from "framer-motion";
+import { getCollection } from "astro:content";
+import { useState } from "react";
+import Window from "./Window";
 
-interface IProject {
-    title: string,
-    description: string,
-    links: number[]
-}
-
-const variantsCarouselItem = {
+const variantsItem = {
     initial: {
-        scale: 1,
+        y: "-150%",
+        opacity: 0,
+        scale: 0,
+        transition: {
+            duration: 0.5,
+        },
     },
-    hover: {
-        scale: 1.1,
-        marginBottom: "0.5rem",
-        marginLeft: "0.75rem",
-        marginRight: "0.75rem",
-    }
+    normal: {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        transition: {
+            duration: 0.5,
+        },
+    },
+    exit: {
+        y: "150%",
+        opacity: 0,
+        scale: 0,
+        transition: {
+            duration: 0.5,
+        },
+    },
+};
 
-}
+const InitialTitle = "Projects.exe";
+const InitialDesc = "HELLO ME";
+const projectsInfo = await getCollection("projects");
 
-const Projects = ({ projectsInfo }: { projectsInfo: IProject[] }) => {
-    const ref = useRef<HTMLDivElement>(null)
-    const start = projectsInfo.map((_) => useRef<HTMLDivElement>(null))
-    const carousel = useRef<HTMLDivElement>(null)
+const Projects = () => {
+    const [isLeft, setLeft] = useState(false);
+    const [selected, setSelected] = useState(-1);
 
-    const [selected, setSelected] = useState(-1)
+    console.log(projectsInfo);
 
     return (
-        <div className="relative h-vhw w-full" ref={ref}>
-            {/* Carousel */}
-            <div className="flex w-full min-h-[15rem] justify-center absolute bottom-7">
-                <div className="flex min-h-full w-3/4 justify-center items-end gap-1 overflow-y-visible overflow-x-hidden" ref={carousel}>
+        <section className="flex h-screen w-full flex-grow flex-col-reverse bar:h-vhw lg:flex-row">
+            <div className="mb-2 flex h-[15%] w-full items-center justify-center lg:mb-0 lg:h-full lg:w-1/6">
+                <div className="flex justify-start h-full w-5/6 flex-shrink items-center lg:justify-between overflow-y-auto overflow-x-scroll rounded-lg border-2 border-lime-300 backdrop-blur-md lg:h-3/4 lg:w-full lg:flex-col gap-3 lg:overflow-x-auto lg:overflow-y-scroll lg:pl-2"
+                >
                     {projectsInfo.map((project, index) => {
                         return (
-                            <motion.div
-                                variants={variantsCarouselItem}
-                                initial="initial"
-                                whileHover="hover"
-                                className="cursor-pointer rounded-md flex items-center justify-end bg-white origin-bottom min-w-[4rem] min-h-[12.5rem] max-h-[12.5rem] text-xl capitalize font-bold"
-                                style={{ writingMode: "sideways-lr", textOrientation: "mixed" }}
+                            <div
                                 key={index}
-                                onClick={() => setSelected(index)} ref={start[index]}
-                                onPointerEnter={() => dispatchEvent(new Event("update-start-loc"))}
+                                className="inline-block cursor-pointer text-xl font-semibold text-white lg:my-3 lg:h-fit lg:w-full lg:mx-0 mx-3 text-center lg:text-start"
+                                onClick={() => {
+                                    setSelected(index);
+                                }}
                             >
-                                {project.title + "\u00A0"}
-                            </motion.div>
-                        )
+                                {project.data.title.toUpperCase()}
+                            </div>
+                        );
                     })}
                 </div>
-
             </div>
-            {/* Desktop */}
-            <div className="absolute top-10 left-1/2 -translate-x-1/2">
-
-            </div>
-
-            {/* Window */}
-            < AnimatePresence mode="sync">
-                {selected != -1 &&
-                    <Maximize
+            <div className="relative flex h-5/6 w-full items-center justify-center lg:h-full lg:w-5/6">
+                <AnimatePresence>
+                    <motion.div
+                        className="absolute h-3/4 w-11/12 sm:w-3/4"
+                        variants={variantsItem}
+                        initial="initial"
+                        animate="normal"
+                        exit="exit"
                         key={selected}
-                        rel={ref}
-                        start={start[selected]}
-                        startContainer={carousel}
-                        end={{
-                            top: 10,
-                            left: "50%",
-                            x: "-50%",
-                            y: 0
-                        }}
                     >
-                        {
-                            <Window title={projectsInfo[selected].title} onClickButtons={() => { setSelected(-1) }}>
-                                <div className="flex flex-col h-full w-[50rem] bg-white rounded-b-md p-2">
-                                    {projectsInfo[selected].description}
-                                </div>
-                            </Window>
-                        }
-                    </Maximize>
-                }
-            </AnimatePresence>
-        </div >
-    )
-}
+                        <Window
+                            title={selected == -1 ? InitialTitle : projectsInfo[selected].data.title}
+                            onClickButtons={() => { setSelected(-1) }}
+                        >
+                            <div className="flex h-full w-full flex-col items-center justify-center text-white">
+                                {selected == -1 ? InitialDesc : projectsInfo[selected].body}
+                            </div>
+                        </Window>
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+        </section>
+    );
+};
 
-export default Projects
+export default Projects;
