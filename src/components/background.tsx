@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import GOLRender from "../webgl/GOLRender";
 
 const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
-
     const GOLCanvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -48,7 +47,8 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
 
     return (
         <canvas
-            id="GOL" ref={GOLCanvasRef}
+            id="GOL"
+            ref={GOLCanvasRef}
             className="absolute top-0 left-0 -z-10 h-full w-full"
         />
     );
