@@ -9,7 +9,7 @@ const Skills = `CheckSkills --list --name Yashan
 
 const AboutMe = () => {
     return (
-        <section className="flex h-full w-full flex-shrink flex-grow items-center justify-center">
+        <section className="flex  h-full w-full flex-shrink flex-grow items-center justify-center">
             <div className="flex  h-full w-2/5 items-center justify-start">
                 <h1 className="ml-10 text-2xl text-white">About Me</h1>
             </div>
