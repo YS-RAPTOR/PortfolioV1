@@ -8,6 +8,8 @@ module.exports = {
 			screens: { bar: "850px" },
 			spacing: {
 				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
+				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
 				WindowWithoutTitleBar: "calc(24rem - 1.5rem - 0.75rem)", // 1.5rem is the titleBar size, 0.75rem is the padding
 			},
 			keyframes: {

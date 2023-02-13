@@ -9,7 +9,7 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
 
         GOLCanvas.width = window.innerWidth;
         GOLCanvas.height = Math.max(
-            document.body.scrollHeight,
+            document.body.clientHeight,
             window.innerHeight
         );
 
@@ -37,6 +37,9 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
                 document.body.scrollHeight,
                 window.innerHeight
             );
+
+            console.log(GOLCanvas.height);
+
             GOL.resize();
 
             dispatchEvent(new Event("resize-correct"));

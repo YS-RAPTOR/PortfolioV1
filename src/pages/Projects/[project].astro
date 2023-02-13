@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
 	const Projects = await getCollection("projects");
@@ -13,12 +14,19 @@ export async function getStaticPaths() {
 	}));
 }
 
+interface Props {
+	project: CollectionEntry<"projects">;
+}
+
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { _, headings } = await project.render();
 
-console.log(project);
-console.log(Content);
+const Sections = headings.map((heading, index) => {
+	const data = project.body.split(heading.text);
+
+	return {
+		heading: heading.text,
+		content: data[1].split("#")[0].trim(),
+	};
+});
 ---
-
-{project}
-{Content}
