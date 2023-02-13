@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./<>?;':\"[]{}\\|`~!@#$%^&*()_+-=";
+import GlitchHandler from "../utils/GlitchHandler";
 
 const variantsDefault = {
     visible: {
@@ -35,89 +34,37 @@ const GlitchText = ({
     entranceGlitch?: "Side" | "Random";
     hoverGlitch?: boolean;
 }) => {
-    const textCap = text.toUpperCase() + "\u00A0";
+    const textCap = text.replaceAll(" ", "\u00A0") + " ";
 
-    const GetRandomChar = () =>
-        ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
-    const GetRandomString = () =>
-        Array.from(textCap)
-            .map((char) => (char === " " ? " " : GetRandomChar()))
-            .join("");
+    const [glitchHandler, _] = useState(new GlitchHandler(iterations, iterDelay, textCap));
 
-    const [displayedText, setDisplayedText] = useState(GetRandomString());
-    const [intervalHandle, setIntervalHandle] = useState<number | undefined>(
-        undefined
+    return (
+        <GlitchedText handler={glitchHandler} variants={variants} hover={hoverGlitch} entranceGlitch={entranceGlitch} />
     );
-    let i = 0;
-    let interval = 0;
-    let randomString = "";
+};
 
-    const GlitchSide = () => {
-        const index = Math.floor(i / iterations);
-        randomString = textCap.substring(0, index) + GetRandomString().substring(index + 1, textCap.length);
-        setDisplayedText(randomString);
-        i++;
-
-        if (i >= iterations * (textCap.length)) {
-            clearInterval(interval);
-        }
-    };
-
-    const GlitchRandom = () => {
-        randomString = Array.from(textCap)
-            .map((char, index) => {
-                if (char === " ") {
-                    return " ";
-                } else if (char == randomString.charAt(index)) {
-                    return char;
-                } else {
-                    return GetRandomChar();
-                }
-            })
-            .join("");
-
-        setDisplayedText(randomString);
-
-        if (textCap == randomString) {
-            clearInterval(interval);
-        }
-    };
-
-    const Shuffle = () => {
-        randomString = GetRandomString();
-        setDisplayedText(randomString);
-        i++;
-        if (i >= 2 ** 32) {
-            clearInterval(interval);
-        }
-    };
-
-    const GlitchEntrance = entranceGlitch == "Side" ? GlitchSide : GlitchRandom;
+const GlitchedText = ({ handler, variants, hover, entranceGlitch }: { handler: GlitchHandler, variants: typeof variantsDefault, hover: boolean, entranceGlitch: string }) => {
+    const [displayedText, setDisplayedText] = useState<string>(handler.GetRandomString());
+    handler.SetDisplayedTextSetter(setDisplayedText);
 
     return (
         <motion.div
             initial="hidden"
             whileInView="visible"
-            whileHover={hoverGlitch ? "hover" : ""}
+            whileHover={hover ? "hover" : ""}
             variants={variants}
             viewport={{ once: false, amount: 0.5 }}
             onAnimationStart={(animation: any) => {
-                clearInterval(intervalHandle);
-                setDisplayedText(GetRandomString());
-                if (animation == "visible") {
-                    i = 0;
-                    interval = setInterval(GlitchEntrance, iterDelay);
-                    setIntervalHandle(interval);
-                } else if (animation == "hover") {
-                    i = 0;
-                    interval = setInterval(Shuffle, iterDelay);
-                    setIntervalHandle(interval);
+                if (animation === "visible") {
+                    handler.start(entranceGlitch);
+                } else if (animation === "hover" && hover) {
+                    handler.start("Shuffle");
                 }
             }}
         >
             {displayedText}
         </motion.div>
     );
-};
+}
 
 export default GlitchText;

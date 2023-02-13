@@ -11,7 +11,7 @@ import Base from "../layouts/Base.astro";
 		class="h-screen bar:h-vhw snap-start bar:scroll-mt-[76px]"
 		id="Hero"
 	>
-		<Hero client:load />
+		<Hero client:only />
 	</section>
 	<section
 		class="h-screen bar:h-vhw snap-start bar:scroll-mt-[76px]"
@@ -29,6 +29,6 @@ import Base from "../layouts/Base.astro";
 		class="bar:h-vhwfn h-vhwf bar:scroll-mt-[76px] snap-start"
 		id="Contact"
 	>
-		<Contact client:load />
+		<Contact client:only />
 	</section>
 </Base>
