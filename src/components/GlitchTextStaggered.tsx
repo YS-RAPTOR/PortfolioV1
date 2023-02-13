@@ -19,10 +19,11 @@ const GlitchTextStaggered = ({
     text,
     iterations,
     iterDelay = 30,
-    staggerTime = 0.05,
+    staggerTime = 0.075,
     variants = variantsDefault,
     entranceGlitch = "Side",
     hoverGlitch = true,
+    direction = "right",
 }: {
     text: string;
     iterations: number;
@@ -31,12 +32,14 @@ const GlitchTextStaggered = ({
     variants?: typeof variantsDefault;
     entranceGlitch?: "Side" | "Random";
     hoverGlitch?: boolean;
+    direction?: "right" | "left";
 }) => {
     const variantsCon = {
         visible: {
             scale: 1.0,
             transition: {
                 staggerChildren: staggerTime,
+                staggerDirection: direction === "right" ? 1 : -1,
             },
         },
         hidden: {
@@ -46,10 +49,10 @@ const GlitchTextStaggered = ({
             scale: 1.1,
         },
     };
+    const space = direction == "right" ? " " : "";
+    const textCap = text.replaceAll(" ", "\u00A0") + space;
 
-    const textCap = text.replaceAll(" ", "\u00A0") + " ";
-
-    const [glitchHandler, _] = useState(new GlitchHandler(iterations, iterDelay, textCap));
+    const [glitchHandler, _] = useState(new GlitchHandler(iterations, iterDelay, textCap, direction));
 
     return (
         <GlitchedText handler={glitchHandler} variants={variants} variantsCon={variantsCon} hover={hoverGlitch} entranceGlitch={entranceGlitch} />

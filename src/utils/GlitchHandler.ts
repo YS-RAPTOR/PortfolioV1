@@ -8,11 +8,13 @@ export default class GlitchHandler {
     iterDelay: number
     text: string
     setDisplayedText: any
+    direction: "left" | "right"
 
-    constructor(noOfIters: number, iterDelay: number, text: string) {
+    constructor(noOfIters: number, iterDelay: number, text: string, direction: "left" | "right" = "right") {
         this.iterations = noOfIters
         this.iterDelay = iterDelay
         this.text = text
+        this.direction = direction
     }
 
     SetDisplayedTextSetter = (setDisplayedText: any) => {
@@ -34,13 +36,24 @@ export default class GlitchHandler {
 
     GlitchSide = () => {
         const index = Math.floor(this.i / this.iterations);
-        this.randomString =
-            this.text.substring(0, index) +
-            this.GetRandomString().substring(index + 1, this.text.length);
+
+        if (this.direction == "right") {
+            this.randomString =
+                this.text.substring(0, index) +
+                this.GetRandomString().substring(index + 1, this.text.length);
+        } else {
+            this.randomString =
+                this.GetRandomString().substring(0, this.text.length - index) +
+                this.text.substring(this.text.length - index, this.text.length);
+        }
+
+
         this.setDisplayedText(this.randomString);
         this.i++;
 
         if (this.i >= this.iterations * this.text.length) {
+            this.setDisplayedText(this.text);
+            console.log(this.text)
             clearInterval(this.interval);
         }
     };
