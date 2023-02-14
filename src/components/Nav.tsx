@@ -5,7 +5,7 @@ import Hamburger from "./Hamburger";
 
 const tabs = ["HOME", "ABOUT", "MY PORTFOLIO", "CONTACTS"];
 const references = tabs.map(
-    (tab) => `#${tab.toLowerCase().replaceAll(" ", "-")}`
+    (tab) => `/#${tab.toLowerCase().replaceAll(" ", "-")}`
 );
 
 const socialsToDisplay = [0, 1, 2];
@@ -91,7 +91,7 @@ const Nav = () => {
                     <nav className="my-3 mx-8 hidden items-center justify-around space-x-10 bar:flex">
                         {tabs.map((tab, index) => (
                             <a
-                                className=" my-3 text-base font-bold text-slate-50  underline decoration-lime-300 underline-offset-4 duration-300 ease-in-out hover:text-lime-300 hover:text-opacity-75"
+                                className=" my-3 font-bold text-slate-50  underline decoration-lime-300 underline-offset-4 duration-300 ease-in-out hover:text-lime-300 hover:text-opacity-75"
                                 href={references[index]}
                                 key={index}
                             >
@@ -100,7 +100,7 @@ const Nav = () => {
                         ))}
                         <a
                             href="/resume"
-                            className="my-1 rounded-md border-2 border-lime-300 px-5 py-2 text-base font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
+                            className="my-1 rounded-md border-2 border-lime-300 px-5 py-2 font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
                         >
                             RESUME
                         </a>

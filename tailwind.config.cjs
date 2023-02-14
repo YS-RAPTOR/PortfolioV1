@@ -5,12 +5,15 @@ module.exports = {
 		extend: {
 			colors: { Background: "#000309", Primary: "#001F54" },
 			transitionDelay: { 0: "0ms" },
-			screens: { bar: "850px" },
+			screens: {
+				bar: "950px",
+				xs: "400px",
+				"3xl": "2800px",
+			},
 			spacing: {
 				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
 				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
 				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
-				WindowWithoutTitleBar: "calc(24rem - 1.5rem - 0.75rem)", // 1.5rem is the titleBar size, 0.75rem is the padding
 			},
 			keyframes: {
 				rubberBand: {

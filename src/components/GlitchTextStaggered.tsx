@@ -49,7 +49,7 @@ const GlitchTextStaggered = ({
             scale: 1.1,
         },
     };
-    const space = direction == "right" ? " " : "";
+    const space = direction == "right" && entranceGlitch == "Side" ? " " : "";
     const textCap = text.replaceAll(" ", "\u00A0") + space;
 
     const [glitchHandler, _] = useState(new GlitchHandler(iterations, iterDelay, textCap, direction));

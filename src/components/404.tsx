@@ -1,10 +1,10 @@
-import GlitchText from "./GlitchText";
 import { motion } from "framer-motion";
 
 const variantCon = {
     visible: {
         transition: {
-            staggerChildren: 0.2,
+            delay: 0.2,
+            staggerChildren: 0.15,
         }
     },
     hidden: {
@@ -33,30 +33,27 @@ const variant = (x: number, y: number) => {
     }
 }
 
-const Contact = () => {
+const Content404 = () => {
 
     return (
         <div className="h-full w-full">
             <motion.div
-                className="flex flex-col w-1/2 text-center h-full flex-grow justify-center items-center mx-auto gap-y-4"
+                className="flex flex-col w-full text-center font-bold h-full flex-grow justify-center items-center mx-auto gap-y-4"
                 variants={variantCon}
                 viewport={{ once: false, amount: 0.75 }}
                 initial="hidden"
                 whileInView="visible"
             >
-                <div className="text-lime-300 text-6xl font-bold text-center">
-                    <GlitchText text="Get in Touch" iterations={5} direction="left" variants={variant(100, 0)}></GlitchText>
-                </div>
-                <motion.div className="text-white" variants={variant(-100, 0)}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ad natus aspernatur repellendus doloribus tenetur dolorem?
-                    Reiciendis ex molestiae recusandae blanditiis. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Corrupti, quisquam!
+                <motion.div variants={variant(0, 10)} className="text-lime-300 text-9xl font-bold text-center">
+                    404
+                </motion.div>
+                <motion.div className="text-white text-2xl" variants={variant(0, 10)}>
+                    Page Not Found
                 </motion.div>
                 <motion.a
-                    href="mailto:yashan.sumanaratne@gmail.com"
-                    className="rounded-md border-2 border-lime-300 px-12 py-4 text-lg font-bold text-lime-300 "
-                    variants={variant(0, 50)}
+                    href="/"
+                    className="rounded-md border-2 border-lime-300 px-14 py-4 text-lg font-bold text-lime-300 "
+                    variants={variant(0, 10)}
                     whileHover={{
                         scale: 1.05,
                         backgroundColor: "#001F54",
@@ -64,11 +61,11 @@ const Contact = () => {
                     }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    CONTACT ME
+                    GO HOME
                 </motion.a>
             </motion.div>
         </div>
     )
 }
 
-export default Contact;
+export default Content404;

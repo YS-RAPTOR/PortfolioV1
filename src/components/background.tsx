@@ -38,10 +38,7 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
                 window.innerHeight
             );
 
-            console.log(GOLCanvas.height);
-
             GOL.resize();
-
             dispatchEvent(new Event("resize-correct"));
         });
 

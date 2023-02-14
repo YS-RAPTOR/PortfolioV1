@@ -1,5 +1,5 @@
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./<>?;':\"[]{}\\|`~!@#$%^&*()_+-=";
-
+const randomMultiplier = 2;
 export default class GlitchHandler {
     i = 0
     interval: number | undefined = undefined
@@ -9,12 +9,14 @@ export default class GlitchHandler {
     text: string
     setDisplayedText: any
     direction: "left" | "right"
+    space: string
 
-    constructor(noOfIters: number, iterDelay: number, text: string, direction: "left" | "right" = "right") {
+    constructor(noOfIters: number, iterDelay: number, text: string, direction: "left" | "right" = "right", space = "\u00A0") {
         this.iterations = noOfIters
         this.iterDelay = iterDelay
         this.text = text
         this.direction = direction
+        this.space = space
     }
 
     SetDisplayedTextSetter = (setDisplayedText: any) => {
@@ -53,7 +55,6 @@ export default class GlitchHandler {
 
         if (this.i >= this.iterations * this.text.length) {
             this.setDisplayedText(this.text);
-            console.log(this.text)
             clearInterval(this.interval);
         }
     };
@@ -61,8 +62,8 @@ export default class GlitchHandler {
     GlitchRandom = () => {
         this.randomString = Array.from(this.text)
             .map((char, index) => {
-                if (char === "\u00A0") {
-                    return "\u00A0";
+                if (char === this.space) {
+                    return this.space;
                 } else if (char == this.randomString.charAt(index)) {
                     return char;
                 } else {
@@ -72,8 +73,9 @@ export default class GlitchHandler {
             .join("");
 
         this.setDisplayedText(this.randomString);
+        this.i++;
 
-        if (this.text == this.randomString || this.i >= this.iterations * this.text.length) {
+        if (this.text == this.randomString || this.i >= this.iterations * this.text.length * randomMultiplier) {
             this.setDisplayedText(this.text);
             clearInterval(this.interval);
         }
@@ -89,6 +91,6 @@ export default class GlitchHandler {
         ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
     GetRandomString = () =>
         Array.from(this.text)
-            .map((char) => (char === "\u00A0" ? "\u00A0" : this.GetRandomChar()))
+            .map((char) => (char === this.space ? this.space : this.GetRandomChar()))
             .join("");
 }

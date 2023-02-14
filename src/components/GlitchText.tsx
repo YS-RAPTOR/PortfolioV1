@@ -26,17 +26,20 @@ const GlitchText = ({
     variants = variantsDefault,
     entranceGlitch = "Side",
     hoverGlitch = true,
+    direction = "right",
 }: {
     text: string;
     iterations: number;
     iterDelay?: number;
-    variants?: typeof variantsDefault;
+    variants?: any;
     entranceGlitch?: "Side" | "Random";
     hoverGlitch?: boolean;
+    direction?: "right" | "left";
 }) => {
-    const textCap = text.replaceAll(" ", "\u00A0") + " ";
+    const space = direction == "right" && entranceGlitch == "Side" ? "‎ " : "";
+    const textCap = text + space;
 
-    const [glitchHandler, _] = useState(new GlitchHandler(iterations, iterDelay, textCap));
+    const [glitchHandler, _] = useState(new GlitchHandler(iterations, iterDelay, textCap, direction, " "));
 
     return (
         <GlitchedText handler={glitchHandler} variants={variants} hover={hoverGlitch} entranceGlitch={entranceGlitch} />
