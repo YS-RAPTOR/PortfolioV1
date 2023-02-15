@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const variantCon = {
     visible: {
         transition: {
-            staggerChildren: 0.2,
+            staggerChildren: 0.25,
         }
     },
     hidden: {
@@ -12,7 +12,7 @@ const variantCon = {
     }
 }
 
-const variant = (x: number, y: number) => {
+const variant = (x: string, y: string) => {
     return {
         visible: {
             opacity: 1,
@@ -36,18 +36,18 @@ const variant = (x: number, y: number) => {
 const Contact = () => {
 
     return (
-        <div className="h-full w-full">
+        <div className="h-full w-full flex flex-grow flex-col">
             <motion.div
                 className="flex flex-col w-1/2 text-center h-full flex-grow justify-center items-center mx-auto gap-y-4"
                 variants={variantCon}
-                viewport={{ once: false, amount: 0.75 }}
+                viewport={{ once: false, amount: 0.2 }}
                 initial="hidden"
                 whileInView="visible"
             >
                 <div className="text-lime-300 text-6xl font-bold text-center">
-                    <GlitchText text="Get in Touch" iterations={5} direction="left" variants={variant(100, 0)}></GlitchText>
+                    <GlitchText text="Get in Touch" iterations={3} direction="left" variants={variant("10%", "0")}></GlitchText>
                 </div>
-                <motion.div className="text-white" variants={variant(-100, 0)}>
+                <motion.div className="text-white" variants={variant("-10%", "0")}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ad natus aspernatur repellendus doloribus tenetur dolorem?
                     Reiciendis ex molestiae recusandae blanditiis. Lorem ipsum
@@ -55,8 +55,8 @@ const Contact = () => {
                 </motion.div>
                 <motion.a
                     href="mailto:yashan.sumanaratne@gmail.com"
-                    className="rounded-md border-2 border-lime-300 px-12 py-4 text-lg font-bold text-lime-300 "
-                    variants={variant(0, 50)}
+                    className="rounded-md border-2 border-lime-300 px-6 xs:px-12 py-4 text-lg font-bold text-lime-300 "
+                    variants={variant("0", "10%")}
                     whileHover={{
                         scale: 1.05,
                         backgroundColor: "#001F54",

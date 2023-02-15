@@ -45,12 +45,10 @@ const variantsContainer = {
 
 const variantsCarousel = {
     hidden: {
-        x: "100%",
-        opacity: 0,
+        scale: 0,
     },
     visible: {
-        x: 0,
-        opacity: 1,
+        scale: 1,
         transition: {
             duration: 0.2,
         }
@@ -64,18 +62,17 @@ const projectsInfo = await getCollection("projects");
 
 const Projects = () => {
     const [selected, setSelected] = useState(-1);
-    const [isX, setIsX] = useState(true);
 
     return (
         < div className="flex h-full w-full flex-grow flex-col-reverse lg:flex-row-reverse">
             <motion.div
                 variants={variantsContainer}
                 className=" flex h-1/6 w-full items-center justify-center lg:mb-0 lg:h-full lg:w-1/6"
-                viewport={{ once: false, amount: 0.75 }}
+                viewport={{ once: false, amount: 0.5 }}
                 initial="hidden"
                 whileInView="visible"
             >
-                <motion.div className="flex justify-between h-full w-5/6 flex-shrink items-start lg:items-center lg:justify-between overflow-y-auto overflow-x-scroll rounded-t-lg lg:rounded-t-none lg:rounded-l-lg border-t-2 lg:border-t-0 lg:border-l-2 border-lime-300 backdrop-blur-md lg:h-1/2 lg:w-full lg:flex-col gap-3 lg:overflow-x-auto lg:overflow-y-scroll lg:pl-2"
+                <motion.div className="origin-bottom lg:origin-right flex justify-between h-full w-5/6 flex-shrink items-start lg:items-center lg:justify-between overflow-y-auto overflow-x-scroll rounded-t-lg lg:rounded-t-none lg:rounded-l-lg border-t-2 lg:border-t-0 lg:border-l-2 border-lime-300 backdrop-blur-md lg:h-1/2 lg:w-full lg:flex-col gap-3 lg:overflow-x-auto lg:overflow-y-scroll lg:pl-2"
                     variants={variantsCarousel}
                 >
                     {projectsInfo.map((project, index) => {
@@ -93,7 +90,7 @@ const Projects = () => {
                     })}
                 </motion.div>
             </motion.div>
-            <div className="relative flex h-5/6 w-full items-center justify-center lg:h-full lg:w-5/6">
+            <div className="relative flex h-5/6 w-full items-end mb-5 bar:mb-0 bar:items-center justify-center lg:h-full lg:w-5/6">
                 <AnimatePresence>
                     <motion.div
                         className="absolute h-3/4 w-11/12 sm:w-3/4"

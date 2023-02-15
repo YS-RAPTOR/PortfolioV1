@@ -8,25 +8,25 @@ import Base from "../layouts/Base.astro";
 
 <Base>
 	<section
-		class="h-screen bar:h-vhw snap-start bar:scroll-mt-[76px]"
+		class="h-fit flex flex-grow flex-col bar:min-h-vhw snap-start bar:scroll-mt-[76px] min-h-screen"
 		id="home"
 	>
 		<Hero client:only />
 	</section>
 	<section
-		class="h-screen bar:h-vhw snap-start bar:scroll-mt-[76px]"
+		class="h-fit flex flex-grow flex-col bar:min-h-vhw snap-start bar:scroll-mt-[76px] min-h-screen"
 		id="about"
 	>
 		<AboutMe client:only />
 	</section>
 	<section
-		class="h-screen bar:h-vhw snap-start bar:scroll-mt-[76px]"
+		class="h-screen bar:h-vhw flex flex-col flex-grow snap-start bar:scroll-mt-[76px]"
 		id="my-portfolio"
 	>
 		<Projects client:only />
 	</section>
 	<section
-		class="bar:h-vhwfn h-vhwf bar:scroll-mt-[76px] snap-start"
+		class="h-fit flex flex-grow flex-col bar:min-h-vhwfn bar:scroll-mt-[76px] snap-start min-h-vhwf"
 		id="contacts"
 	>
 		<Contact client:only />

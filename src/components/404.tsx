@@ -40,7 +40,7 @@ const Content404 = () => {
             <motion.div
                 className="flex flex-col w-full text-center font-bold h-full flex-grow justify-center items-center mx-auto gap-y-4"
                 variants={variantCon}
-                viewport={{ once: false, amount: 0.75 }}
+                viewport={{ once: false, amount: 0.5 }}
                 initial="hidden"
                 whileInView="visible"
             >
