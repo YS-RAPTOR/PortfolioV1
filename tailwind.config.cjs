@@ -9,6 +9,7 @@ module.exports = {
 				bar: "950px",
 				xs: "400px",
 				"3xl": "2800px",
+				smh: { raw: "(max-height: 639px)" },
 			},
 			spacing: {
 				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
