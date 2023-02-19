@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import Nav from "../../components/Nav";
+import Background from "../../components/Background";
+import Footer from "../../components/Footer.astro";
 
 export async function getStaticPaths() {
 	const Projects = await getCollection("projects");
@@ -19,14 +22,25 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { _, headings } = await project.render();
-
-const Sections = headings.map((heading, index) => {
-	const data = project.body.split(heading.text);
-
-	return {
-		heading: heading.text,
-		content: data[1].split("#")[0].trim(),
-	};
-});
+const { Content, headings } = await project.render();
 ---
+
+<html lang="en" class="scroll-smooth 3xl:text-lg 3xl:font-semibold">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{project.data.title}</title>
+	</head>
+	<body class="relative overflow-x-hidden">
+		<Nav client:load />
+		<Background fps={12} scale={7} client:load />
+		<div class="bar:ml-16 font-mono text-white">
+			<Content />
+		</div>
+		<Footer />
+	</body>
+</html>
+
+<Content />

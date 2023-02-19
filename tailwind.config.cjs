@@ -13,6 +13,8 @@ module.exports = {
 			},
 			spacing: {
 				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
+				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
 			},
 			minHeight: {
 				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
