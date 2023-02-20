@@ -58,7 +58,10 @@ const variantsCarousel = {
 const InitialTitle = "Projects.exe";
 const InitialHeading = "Projects I Have Worked On";
 const InitialDesc = "Click on a specific project on the menu to learn more about it.";
-const projectsInfo = await getCollection("projects");
+const projectsInfoResponse = await getCollection("projects");
+const projectsInfo = projectsInfoResponse.sort((a, b) => {
+    return a.data.rank - b.data.rank;
+});
 
 const Projects = () => {
     const [selected, setSelected] = useState(-1);
@@ -111,8 +114,8 @@ const Projects = () => {
                                 setSelected(-1);
                             }}
                         >
-                            <div className="relative flex h-full w-full flex-grow flex-col rounded-b-md p-2 backdrop-blur-md max-h-full overflow-y-scroll">
-                                <div className="inline-block text-5xl text-lime-300">
+                            <div className="relative flex h-full w-full flex-grow flex-col rounded-b-md p-2 backdrop-blur-md max-h-full overflow-y-scroll text-sm sm:text-base lg:text-lg 3xl:text-xl">
+                                <div className="inline-block text-xl cs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-lime-300">
                                     <GlitchText
                                         text={
                                             selected == -1
@@ -124,7 +127,7 @@ const Projects = () => {
                                         hoverGlitch={false}
                                     />
                                 </div>
-                                <div className="inline-block text-lg text-white">
+                                <div className="inline-block text-white ">
                                     <TerminalText textDelay={1 / (selected == -1 ? InitialDesc.length : projectsInfo[selected].data.description.length)}
                                         text={
                                             selected == -1
@@ -137,7 +140,7 @@ const Projects = () => {
                                 </div>
                                 {selected != -1 && (
                                     <div className="mt-auto inline-block p-2">
-                                        <div className="bg-lime-300 flex flex-grow rounded h-8 p-1 my-5 justify-center gap-x-10">
+                                        <div className="bg-lime-300 flex flex-grow rounded h-8 p-1 my-5 justify-center items-center gap-x-10">
                                             {projectsInfo[
                                                 selected
                                             ].data.technologies.map(
@@ -148,12 +151,22 @@ const Projects = () => {
                                                 }
                                             )}
                                         </div>
-                                        <Social
-                                            socialID={0}
-                                            link={
-                                                projectsInfo[selected].data.link
+                                        <div className="flex gap-x-5">
+                                            <Social
+                                                socialID={0}
+                                                link={
+                                                    projectsInfo[selected].data.link
+                                                }
+                                            ></Social>
+                                            {projectsInfo[selected].data.demo &&
+                                                <Social
+                                                    socialID={3}
+                                                    link={
+                                                        projectsInfo[selected].data.demo
+                                                    }
+                                                ></Social>
                                             }
-                                        ></Social>
+                                        </div>
                                     </div>
                                 )}
                             </div>
