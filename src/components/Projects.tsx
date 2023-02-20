@@ -64,7 +64,7 @@ const projectsInfo = projectsInfoResponse.sort((a, b) => {
 });
 
 const Projects = () => {
-    const [selected, setSelected] = useState(-1);
+    const [selected, setSelected] = useState(0);
 
     return (
         <div className="flex h-full w-full flex-grow flex-col-reverse lg:flex-row-reverse">
@@ -139,8 +139,8 @@ const Projects = () => {
                                     ></TerminalText>
                                 </div>
                                 {selected != -1 && (
-                                    <div className="mt-auto inline-block p-2">
-                                        <div className="bg-lime-300 flex flex-grow rounded h-8 p-1 my-5 justify-center items-center gap-x-10">
+                                    <div className="mt-auto flex flex-col gap-y-2 p-2">
+                                        <div className="bg-lime-300 flex flex-grow rounded h-8 p-1 justify-center items-center gap-x-10">
                                             {projectsInfo[
                                                 selected
                                             ].data.technologies.map(
@@ -151,7 +151,8 @@ const Projects = () => {
                                                 }
                                             )}
                                         </div>
-                                        <div className="flex gap-x-5">
+
+                                        <div className="flex gap-x-5 items-center">
                                             <Social
                                                 socialID={0}
                                                 link={
@@ -166,6 +167,15 @@ const Projects = () => {
                                                     }
                                                 ></Social>
                                             }
+                                            {
+                                                !projectsInfo[selected].data.draft && (
+                                                    <a
+                                                        href={`Projects/${projectsInfo[selected].slug}`}
+                                                        className="ml-auto rounded-md border-2 border-lime-300 px-2 py-1 font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary max-w-max"
+                                                    >
+                                                        Read More
+                                                    </a>
+                                                )}
                                         </div>
                                     </div>
                                 )}

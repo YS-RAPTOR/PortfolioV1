@@ -7,6 +7,7 @@ const projectsCollection = defineCollection({
         description: z.string(),
         technologies: z.array(z.string()),
         rank: z.number(),
+        draft: z.boolean(),
         demo: z.optional(z.string()),
     }),
 });

@@ -1,7 +1,7 @@
 const Tech = ({ tech }: { tech: string }) => {
     return (
         <div className="">
-            {tech}
+            {tech.toUpperCase()}
         </div>
     )
 }
