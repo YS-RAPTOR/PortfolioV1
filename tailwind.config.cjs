@@ -5,7 +5,22 @@ module.exports = {
 		extend: {
 			colors: { Background: "#000309", Primary: "#001F54" },
 			transitionDelay: { 0: "0ms" },
-			screens: { bar: "850px" },
+			screens: {
+				bar: "950px",
+				xs: "400px",
+				"3xl": "2800px",
+				smh: { raw: "(max-height: 639px)" },
+			},
+			spacing: {
+				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
+				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
+			},
+			minHeight: {
+				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
+				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
+			},
 			keyframes: {
 				rubberBand: {
 					"0%": { transform: "scale3d(1, 1, 1)" },

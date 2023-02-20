@@ -1,85 +1,34 @@
 ---
+import AboutMe from "../components/AboutMe";
+import Contact from "../components/Contact";
+import Projects from "../components/Projects";
+import Hero from "../components/Hero";
 import Base from "../layouts/Base.astro";
-import BouncyText from "../components/BouncyText";
-import SkillCube from "../components/SkillSphere";
 ---
 
 <Base>
-    <h1 class="text-slate-50 text-8xl font-bold">
-        <BouncyText client:load text="Hello World PopIn" />
-    </h1>
-    <h1 class="text-xl">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus,
-        inventore voluptates excepturi aut nemo itaque perferendis sunt
-        consequatur similique eum blanditiis sit iste, rem nesciunt numquam?
-        Beatae sequi voluptatibus culpa doloribus, a veritatis quaerat
-        doloremque repudiandae nihil, quas velit odit! Libero eos aperiam totam
-        consectetur, dolore impedit numquam delectus tempora sint voluptas
-        debitis quae in mollitia laudantium est quasi nostrum enim dolorum
-        nesciunt? Consequatur, possimus sint fugit deleniti repudiandae nihil
-        sapiente nam deserunt repellendus tempora veniam eaque numquam culpa
-        quibusdam eum asperiores dicta, tenetur atque voluptatum! Quasi, atque,
-        itaque suscipit odit sed beatae rerum ducimus porro veniam reprehenderit
-        vero voluptatum veritatis eum saepe, aliquam harum quidem maiores sint
-        ullam! Officia omnis temporibus rerum magni neque ea placeat dolor nihil
-        quam necessitatibus explicabo quod in cupiditate, minima dolorum labore
-        delectus incidunt repellendus optio quidem ex, facilis maxime. Ea
-        consectetur quia est officiis, suscipit obcaecati debitis quos atque quo
-        ratione officia nostrum voluptates numquam, at natus eveniet eaque vitae
-        dolorum qui dolore esse! Asperiores illum ab accusantium tenetur facere
-        voluptatum animi error cumque. Doloribus dolor non ut illo magnam sit
-        pariatur necessitatibus aliquam porro totam dolore ad impedit officia
-        soluta velit laborum ipsum placeat asperiores fuga perspiciatis beatae
-        quo quia, quidem quos? Iste quam nemo at cum dolorum inventore harum,
-        culpa sequi tenetur excepturi nisi? Nemo quidem quis voluptates,
-        blanditiis aliquam perspiciatis laudantium debitis illum dolorem iusto
-        repudiandae facere quas facilis, explicabo eligendi, provident aliquid.
-        Doloribus veniam distinctio illum aut vel excepturi harum placeat ex ad
-        vero deleniti nesciunt quaerat minima, fugit a esse adipisci suscipit
-        odio maxime expedita ipsam! Eveniet praesentium minima enim eligendi ut
-        labore, dolor veniam quidem deserunt et vitae iure fugiat itaque, neque
-        voluptatum ad. Eum est dolores provident sed! Labore eveniet vero
-        adipisci numquam itaque repellendus voluptatum corporis dicta, molestiae
-        aliquid ab modi beatae quaerat reiciendis. Blanditiis ipsam laudantium
-        obcaecati aliquam tenetur architecto facilis, fugiat suscipit hic et
-        quas repellendus odio nulla saepe vero quibusdam, harum nisi in magnam
-        inventore fuga expedita illum corrupti ipsum. Tenetur fugit deleniti,
-        doloribus similique dolorum assumenda? Autem nostrum minus iusto et, eum
-        totam! Molestias ut atque minima recusandae voluptate praesentium
-        perferendis maxime ad laboriosam. Commodi quod molestiae illum esse,
-        fugiat similique neque voluptatum, beatae eligendi consequuntur, modi
-        iusto perferendis? Voluptatum voluptatibus sequi autem necessitatibus
-        praesentium, voluptates doloribus cumque optio cupiditate corrupti
-        dolorum dolor libero ipsam provident suscipit blanditiis dicta,
-        voluptas, quos nulla eaque. Suscipit officiis veniam, illum numquam
-        doloribus autem aut dolorum quas beatae natus voluptates magnam est enim
-        unde vel deleniti hic fuga corrupti soluta voluptatibus sed dignissimos
-        ullam blanditiis animi? Magnam corporis est minus impedit dolorum
-        perferendis quibusdam at. Laborum, eveniet? Omnis delectus eius
-        inventore illum enim excepturi rerum aspernatur suscipit illo totam.
-        Doloribus at aperiam, consectetur saepe numquam quae itaque obcaecati
-        non provident corporis natus tempore tenetur sit sed earum nihil vel
-        nostrum eligendi quidem. Autem quibusdam nisi corporis, nemo deleniti
-        delectus, sint minus id consectetur corrupti vel neque temporibus error
-        porro similique, natus cum minima. Id consequatur illum facere nemo? Id
-        distinctio vero non repellat sed beatae?
-    </h1>
+	<section
+		class="h-fit flex flex-grow flex-col bar:min-h-vhw snap-start bar:scroll-mt-[76px] min-h-screen"
+		id="home"
+	>
+		<Hero client:only />
+	</section>
+	<section
+		class="h-fit flex flex-grow flex-col bar:min-h-vhw snap-start bar:scroll-mt-[76px] min-h-screen"
+		id="about"
+	>
+		<AboutMe client:only />
+	</section>
+	<section
+		class="h-screen bar:h-vhw flex flex-col flex-grow snap-start bar:scroll-mt-[76px]"
+		id="my-portfolio"
+	>
+		<Projects client:only />
+	</section>
+	<section
+		class="h-fit flex flex-grow flex-col bar:min-h-vhwfn bar:scroll-mt-[76px] snap-start min-h-vhwf"
+		id="contacts"
+	>
+		<Contact client:only />
+	</section>
 </Base>
-
-<script>
-    const main = () => {
-        const PopIn = document.getElementsByClassName("PopIn");
-        for (let i = 0; i < PopIn.length; i++) {
-            const element = PopIn[i];
-            element.addEventListener("animationend", () => {
-                element.classList.remove("animate-PopIn");
-            });
-
-            element.addEventListener("mouseenter", () => {
-                element.classList.add("", "animate__bounceIn");
-            });
-        }
-    };
-
-    main();
-</script>
