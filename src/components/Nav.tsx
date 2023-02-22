@@ -85,8 +85,8 @@ const Nav = () => {
                     <Hamburger state={isOpen} setState={setOpen} />
 
                     {/* Bar Info */}
-                    <div className="m-5 my-3 mx-8 hidden h-12 w-12 items-center justify-center bg-slate-50 bar:flex">
-                        LOGO
+                    <div className="m-5 my-3 mx-8 hidden h-12 w-12 items-center justify-center bar:flex">
+                        <img src="/icon.svg" alt="LOGO" />
                     </div>
                     <nav className="my-3 mx-8 hidden items-center justify-around space-x-10 bar:flex">
                         {tabs.map((tab, index) => (
@@ -134,10 +134,10 @@ const Nav = () => {
                         >
                             <motion.div
                                 variants={variantLogo}
-                                className="mt-5 mr-auto ml-5 flex h-16 w-16 items-center justify-center bg-slate-50"
+                                className="mt-5 mr-auto ml-5 flex h-16 w-16 items-center justify-center "
                                 key={0}
                             >
-                                LOGO
+                                <img src="/icon.svg" alt="LOGO" />
                             </motion.div>
                             <nav
                                 className="mx-auto flex flex-grow flex-col items-center smh:flex-row smh:gap-x-10"
