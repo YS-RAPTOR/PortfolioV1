@@ -1,9 +1,0 @@
-- name: Astro Deploy
-  # You may pin to the exact commit or the version.
-  # uses: withastro/action@dc081df9eacdb11181ea51e5d05853faa5aee891
-  uses: withastro/action@v0
-  with:
-    path: # optional, default is .
-    # The node version to use
-    node-version: 16
-    package-manager: pnpm
