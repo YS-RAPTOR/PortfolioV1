@@ -64,7 +64,7 @@ const projectsInfo = projectsInfoResponse.sort((a, b) => {
 });
 
 const Projects = () => {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(-1);
 
     return (
         <div className="flex h-full w-full flex-grow flex-col-reverse lg:flex-row-reverse">
@@ -114,7 +114,7 @@ const Projects = () => {
                                 setSelected(-1);
                             }}
                         >
-                            <div className="relative flex h-full w-full flex-grow flex-col rounded-b-md p-2 backdrop-blur-md max-h-full overflow-y-scroll text-sm sm:text-base lg:text-lg 3xl:text-xl">
+                            <div className="relative flex h-full w-full flex-grow flex-col rounded-b-md p-2 backdrop-blur-md max-h-full overflow-y-scroll overflow-x-hidden text-sm sm:text-base lg:text-lg 3xl:text-xl">
                                 <div className="inline-block text-xl cs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-lime-300">
                                     <GlitchText
                                         text={
@@ -128,7 +128,7 @@ const Projects = () => {
                                     />
                                 </div>
                                 <div className="inline-block text-white ">
-                                    <TerminalText textDelay={1 / (selected == -1 ? InitialDesc.length : projectsInfo[selected].data.description.length)}
+                                    <TerminalText textDelay={1.5 / (selected == -1 ? InitialDesc.length : projectsInfo[selected].data.description.length)}
                                         text={
                                             selected == -1
                                                 ? InitialDesc
