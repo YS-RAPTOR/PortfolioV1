@@ -86,7 +86,7 @@ const Nav = () => {
 
                     {/* Bar Info */}
                     <div className="m-5 my-3 mx-8 hidden h-12 w-12 items-center justify-center bar:flex">
-                        <img src="/icon.svg" alt="LOGO" />
+                        <img src="/Portfolio/icon.svg" alt="LOGO" />
                     </div>
                     <nav className="my-3 mx-8 hidden items-center justify-around space-x-10 bar:flex">
                         {tabs.map((tab, index) => (
@@ -99,7 +99,7 @@ const Nav = () => {
                             </a>
                         ))}
                         <a
-                            href="/resume"
+                            href="/Portfolio/resume"
                             className="my-1 rounded-md border-2 border-lime-300 px-5 py-2 font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
                         >
                             RESUME
@@ -137,7 +137,7 @@ const Nav = () => {
                                 className="mt-5 mr-auto ml-5 flex h-16 w-16 items-center justify-center "
                                 key={0}
                             >
-                                <img src="/icon.svg" alt="LOGO" />
+                                <img src="/Portfolio/icon.svg" alt="LOGO" />
                             </motion.div>
                             <nav
                                 className="mx-auto flex flex-grow flex-col items-center smh:flex-row smh:gap-x-10"
@@ -163,7 +163,7 @@ const Nav = () => {
                                 key={2}
                             >
                                 <motion.a
-                                    href="/resume"
+                                    href="/Portfolio/resume"
                                     className="my-auto justify-self-end rounded-md border-2 border-lime-300 px-12 py-4 text-lg font-bold text-lime-300 "
                                     variants={variantNavItems}
                                     whileHover={{
