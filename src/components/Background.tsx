@@ -27,7 +27,8 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
             addEventListener("touchend", GOL.onTouchEnd);
             addEventListener("touchcancel", GOL.onTouchEnd);
         }
-
+        
+        // Setting up Resize Event
         addEventListener("resize", (event) => {
             GOLCanvas.width = 360;
             GOLCanvas.height = 360;
