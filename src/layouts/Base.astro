@@ -75,6 +75,8 @@ import Background from "../components/Background";
 			name="twitter:image:alt"
 			content="Yashan | Engineer & Developer Logo"
 		/>
+		<meta name="twitter:image:width" content="512" />
+		<meta name="twitter:image:height" content="512" />
 		<meta
 			name="twitter:domain"
 			content="https://ys-raptor.github.io/Portfolio"
@@ -85,7 +87,7 @@ import Background from "../components/Background";
 		<meta name="generator" content={Astro.generator} />
 		<title>Yashan | Engineer & Developer</title>
 	</head>
-	<body class="relative overflow-x-hidden">
+	<body class="relative overflow-x-hidden bg-Background">
 		<Nav client:load />
 		<Background fps={12} scale={7} client:load />
 		<div class="bar:ml-16 font-mono">
