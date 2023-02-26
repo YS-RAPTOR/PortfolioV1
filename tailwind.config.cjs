@@ -12,14 +12,14 @@ module.exports = {
 				smh: { raw: "(max-height: 639px)" },
 			},
 			spacing: {
-				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				vhw: "calc(100vh - 63px)", // 63px is the height of the navbar
 				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
-				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
+				vhwfn: "calc(100vh - 63px - 9.25rem)", // 9.25 is the footer
 			},
 			minHeight: {
-				vhw: "calc(100vh - 76px)", // 76px is the height of the navbar
+				vhw: "calc(100vh - 63px)", // 63px is the height of the navbar
 				vhwf: "calc(100vh - 9.25rem)", // 9.25 is the footer
-				vhwfn: "calc(100vh - 76px - 9.25rem)", // 9.25 is the footer
+				vhwfn: "calc(100vh - 63px - 9.25rem)", // 9.25 is the footer
 			},
 			keyframes: {
 				rubberBand: {
