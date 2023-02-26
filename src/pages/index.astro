@@ -11,27 +11,27 @@ const projectsInfoResponse = await getCollection("projects");
 
 <Base>
 	<section
-		class="h-fit flex flex-grow flex-col bar:min-h-vhw bar:scroll-mt-[76px] min-h-screen"
+		class="h-fit flex flex-grow flex-col bar:min-h-vhw bar:scroll-mt-[63px] min-h-screen"
 		id="home"
 	>
-		<Hero client:only />
+		<Hero client:load />
 	</section>
 	<section
-		class="h-fit flex flex-grow flex-col bar:min-h-vhw bar:scroll-mt-[76px] min-h-screen"
+		class="h-fit flex flex-grow flex-col bar:min-h-vhw bar:scroll-mt-[63px] min-h-screen"
 		id="about"
 	>
-		<AboutMe client:only />
+		<AboutMe client:load />
 	</section>
 	<section
-		class="h-screen bar:h-vhw flex flex-col flex-grow bar:scroll-mt-[76px]"
+		class="h-screen bar:h-vhw flex flex-col flex-grow bar:scroll-mt-[63px]"
 		id="my-portfolio"
 	>
-		<Projects client:only projectsInfoResponse={projectsInfoResponse} />
+		<Projects client:load projectsInfoResponse={projectsInfoResponse} />
 	</section>
 	<section
-		class="h-fit flex flex-grow flex-col bar:min-h-vhwfn bar:scroll-mt-[76px] min-h-vhwf"
+		class="h-fit flex flex-grow flex-col bar:min-h-vhwfn bar:scroll-mt-[63px] min-h-vhwf"
 		id="contacts"
 	>
-		<Contact client:only />
+		<Contact client:load />
 	</section>
 </Base>
