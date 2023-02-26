@@ -1,9 +1,9 @@
 const Tech = ({ tech }: { tech: string }) => {
     return (
-        <div className="font-black">
+        <div className="font-black min-w-[8em] ">
             {tech.toUpperCase()}
         </div>
     )
 }
 
-export default Tech;
+export default Tech

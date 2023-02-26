@@ -141,7 +141,7 @@ const Projects = ({ projectsInfoResponse }: { projectsInfoResponse: CollectionEn
                                 </div>
                                 {selected != -1 && (
                                     <div className="mt-auto flex flex-col gap-y-2 p-2">
-                                        <div className="bg-lime-300 flex flex-grow rounded h-8 p-1 justify-center items-center gap-x-10">
+                                        <div className="bg-lime-300 flex flex-wrap flex-grow rounded h-fit p-1 justify-center items-center text-center gap-x-1">
                                             {projectsInfo[
                                                 selected
                                             ].data.technologies.map(
