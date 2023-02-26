@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import { useState } from "react";
 import Window from "./Window";
 import GlitchText from "./GlitchText";
@@ -58,12 +58,13 @@ const variantsCarousel = {
 const InitialTitle = "Projects.exe";
 const InitialHeading = "Projects I Have Worked On";
 const InitialDesc = "Click on a specific project on the menu to learn more about it.";
-const projectsInfoResponse = await getCollection("projects");
-const projectsInfo = projectsInfoResponse.sort((a, b) => {
-    return a.data.rank - b.data.rank;
-});
 
-const Projects = () => {
+const Projects = ({ projectsInfoResponse }: { projectsInfoResponse: CollectionEntry<"projects">[] }) => {
+
+    const projectsInfo = projectsInfoResponse.sort((a, b) => {
+        return a.data.rank - b.data.rank;
+    });
+
     const [selected, setSelected] = useState(-1);
 
     return (
@@ -170,7 +171,7 @@ const Projects = () => {
                                             {
                                                 !projectsInfo[selected].data.draft && (
                                                     <a
-                                                        href={`Projects/${projectsInfo[selected].slug}`}
+                                                        href={`/Portfolio/Projects/${projectsInfo[selected].slug}`}
                                                         className="ml-auto rounded-md border-2 border-lime-300 px-2 py-1 font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary max-w-max"
                                                     >
                                                         Read More

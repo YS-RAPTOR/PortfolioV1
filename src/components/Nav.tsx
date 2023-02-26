@@ -5,7 +5,7 @@ import Hamburger from "./Hamburger";
 
 const tabs = ["HOME", "ABOUT", "MY PORTFOLIO", "CONTACTS"];
 const references = tabs.map(
-    (tab) => `/#${tab.toLowerCase().replaceAll(" ", "-")}`
+    (tab) => `/Portfolio/#${tab.toLowerCase().replaceAll(" ", "-")}`
 );
 
 const socialsToDisplay = [0, 1, 2];
