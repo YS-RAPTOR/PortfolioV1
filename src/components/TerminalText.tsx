@@ -50,13 +50,9 @@ const TerminalText = ({
                             {line.split(" ").map((word, wIndex) => {
                                 return (
                                     <div className="inline-block" key={`${lIndex} ${wIndex}`}>
-                                        {word.split("").map((char, index) => {
-                                            return (
-                                                <motion.span key={`${lIndex} ${wIndex} ${index}`} variants={Appear}>
-                                                    {char}
-                                                </motion.span>
-                                            );
-                                        })}
+                                        <motion.span key={`${lIndex} ${wIndex} ${word}`} variants={Appear}>
+                                            {word}
+                                        </motion.span>
                                         {wIndex != line.split(" ").length - 1 &&
                                             <motion.span key={`${lIndex} ${word.length} space`} variants={Appear}>
                                                 {"\u00A0"}
