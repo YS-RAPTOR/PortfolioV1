@@ -3,6 +3,12 @@ import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav";
 import Background from "../components/Background";
 
+interface Props{
+    GenerateNavigation?: boolean;
+}
+
+const {GenerateNavigation = true} = Astro.props;
+
 // Background
 // Primary
 // Cyan700
@@ -91,12 +97,14 @@ import Background from "../components/Background";
 		<title>Yashan | Engineer & Developer</title>
 	</head>
 	<body class="relative overflow-x-hidden">
-		<Nav client:load />
+		{GenerateNavigation &&
+         <Nav client:load />
 		<Background fps={12} scale={7} client:load />
 		<div class="bar:ml-16 font-mono">
 			<slot />
 		</div>
 		<Footer />
+        }
 	</body>
 </html>
 

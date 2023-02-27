@@ -99,6 +99,8 @@ const Nav = () => {
                             </a>
                         ))}
                         <a
+                            target="_blank"
+                            rel="noopener noreferrer"
                             href="/Portfolio/resume"
                             className="my-1 rounded-md border-2 border-lime-300 px-5 py-2 font-bold text-lime-300 duration-300 ease-in-out hover:bg-Primary"
                         >
@@ -163,6 +165,8 @@ const Nav = () => {
                                 key={2}
                             >
                                 <motion.a
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     href="/Portfolio/resume"
                                     className="my-auto justify-self-end rounded-md border-2 border-lime-300 px-12 py-4 text-lg font-bold text-lime-300 "
                                     variants={variantNavItems}

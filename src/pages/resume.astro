@@ -3,14 +3,41 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base>
-	<section
-		class="h-vhwf bar:h-vhwfn flex-grow flex-col flex justify-center items-center pt-24 bar:pt-0"
-	>
-		<embed
-			src="https://ys-raptor.github.io/Portfolio/resume.pdf"
-			type="application/pdf"
-			width="100%"
-			height="100%"
-		/>
-	</section>
+	<div id="adobe-dc-view"></div>
+
+	<script src="https://documentservices.adobe.com/view-sdk/viewer.js"
+	></script>
+
+	<script type="text/javascript">
+		document.addEventListener("adobe_dc_view_sdk.ready", function () {
+			var adobeDCView = new AdobeDC.View({
+				clientId: "<YOUR_CLIENT_ID>",
+				divId: "adobe-dc-view",
+			});
+
+			adobeDCView.previewFile(
+				{
+					content: {
+						location: {
+							url: "https://https://ys-raptor.github.io/Portfolio/resume.pdf",
+						},
+					},
+
+					metaData: { fileName: "resume.pdf" },
+				},
+				{
+					embedMode: "FULL_WINDOW",
+					showAnnotationTools: false,
+					showDownloadPDF: true,
+					showPrintPDF: false,
+					showZoomControls: true,
+					defaultViewMode: "FIT_WIDTH",
+					enableLinearization: true,
+					enableFormFilling: false,
+					showThumbnails: false,
+					showBookmarks: false,
+				}
+			);
+		});
+	</script>
 </Base>
