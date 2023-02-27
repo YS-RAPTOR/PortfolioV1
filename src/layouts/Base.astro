@@ -5,9 +5,10 @@ import Background from "../components/Background";
 
 interface Props{
     GenerateNavigation?: boolean;
+    UsePDF?: boolean;
 }
 
-const {GenerateNavigation = true} = Astro.props;
+const {GenerateNavigation = true, UsePDF = false} = Astro.props;
 
 // Background
 // Primary
@@ -95,6 +96,12 @@ const {GenerateNavigation = true} = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Yashan | Engineer & Developer</title>
+
+        {
+            UsePDF &&
+            <script src="https://documentservices.adobe.com/view-sdk/viewer.js"
+	        ></script>
+        }
 	</head>
 	<body class="relative overflow-x-hidden">
 		{GenerateNavigation &&
