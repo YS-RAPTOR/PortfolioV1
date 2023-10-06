@@ -1,0 +1,14 @@
+{
+    "title": "Tetris AI",
+    "link": "https://github.com/YS-RAPTOR/Tetris-AI",
+    "technologies": [
+        "MATLAB",
+        "JAVA",
+        "TESSERACT-OCR",
+        "CRAFT"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "https://youtu.be/fYfdHKImXKY",
+    "description": "I developed an AI system capable of playing Tetris autonomously. This project involved a multifaceted approach that leveraged various technologies for image processing and decision-making.\n\nThe AI begins by capturing screenshots from a Tetris game website. Image processing techniques, including OCR (Optical Character Recognition), CRAFT (Character Region Awareness For Text Detection), and color-based segmentation, are employed to accurately detect and interpret the Tetris game board and its current state.\n\nThe AI doesn't merely recognize the game state; it also strategizes to identify the best location for each Tetris piece to maximize its efficiency. This involves analyzing the current game board, evaluating potential placements for the incoming piece, and selecting the optimal position based on predefined criteria.\n\nOnce the AI determines the ideal placement for the Tetris piece, it generates and executes the necessary input commands to maneuver the piece to the specified location on the game board.\n\nThis project showcases my proficiency in computer vision, image processing, and artificial intelligence. It highlights my ability to create innovative solutions that combine these technologies to achieve a specific task\u2014in this case, mastering the game of Tetris through autonomous gameplay."
+}

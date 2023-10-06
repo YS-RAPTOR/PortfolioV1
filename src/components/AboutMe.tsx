@@ -4,6 +4,10 @@ import Window from "./Window";
 import { motion } from "framer-motion";
 
 const Skills = `CheckSkills --list --name Yashan
+- Design:
+    - Blender
+    - SolidWorks
+    - Solidworks Simulation
 - Programming Languages:
     - C++
     - C#

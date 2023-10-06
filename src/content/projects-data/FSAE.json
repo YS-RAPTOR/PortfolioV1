@@ -1,0 +1,13 @@
+{
+    "title": "FSAE Car Suspension System Arms",
+    "link": "None",
+    "technologies": [
+        "SolidWorks",
+        "Blender",
+        "SolidWorks FEA"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "None",
+    "description": "In the context of a university unit, I took on the challenge of designing the front right suspension system for an FSAE (Formula SAE) car. Initially conceived as a group project, circumstances led to a solo endeavor focused on creating the front right suspension arms.\n\nThe suspension arms were engineered as a double wishbone system, meticulously crafted using SolidWorks. The primary objective was to ensure they could withstand the rigorous forces encountered during high-speed cornering. This necessitated the utilization of Finite Element Analysis (FEA) within SolidWorks to validate the structural integrity of the arms.\n\nOne of the notable aspects of this project was the steep learning curve. Prior to this undertaking, my knowledge of suspension systems and automotive mechanics was limited. However, I embraced the opportunity to acquire expertise in these areas through research and hands-on design.\n\nThe design adhered to critical suspension geometry parameters, including a roll center positioned at 25mm, a static camber of -1 degree, Kingpin Inclination (KPI) of 6 degrees, and 4 degrees of caster. These specifications were selected after heavy research of other FSAE cars.\n\nTo present the design effectively, I employed Blender for realistic rendering and 3D animation. This included creating detailed exploded views and a 360-degree rotation animation. Realistic procedural materials were applied to the components, enhancing the visual representation of the suspension arms.\n\nThis project stands as a testament to my adaptability, determination, and capacity to tackle complex engineering challenges, even when venturing into previously unfamiliar territory. It demonstrates not only my technical design proficiency but also my ability to absorb and apply newfound knowledge effectively. Ultimately, the project yielded a meticulously designed and robust front right suspension system, ready to enhance the performance and competitiveness of an FSAE car."
+}

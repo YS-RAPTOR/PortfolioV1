@@ -1,0 +1,13 @@
+{
+    "title": "Traffic Light System",
+    "link": "https://github.com/YS-RAPTOR/TrafficLightProject",
+    "technologies": [
+        "VHDL",
+        "Xilinx ISE",
+        "CPLD"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "None",
+    "description": "As a pivotal part of my digital electronic design coursework, I led the development of a sophisticated traffic light system using VHDL and Xilinx ISE for a Complex Programmable Logic Device (CPLD). Collaborating closely with my team, we successfully designed and implemented a fully functional traffic management system that impeccably met project specifications.\n\nThis traffic light system operates on the fundamental principles of digital design, including state machines, precise clocking, and meticulous signal timing. Our primary objective was to ensure reliability and accuracy in traffic light synchronization. The project served as a testament to my proficiency in VHDL and mastery of Xilinx ISE, essential tools for digital hardware development.\n\nIn essence, this undertaking exemplified my aptitude for translating theoretical concepts into tangible, real-world solutions. It underscored my prowess in digital design and hardware engineering, exemplifying my competence in handling intricate digital circuits and systems to achieve precise project objectives. Furthermore, it highlighted my adeptness in problem-solving, enabling me to identify and resolve challenges effectively, making this project an illuminating showcase of my capabilities in the realm of digital electronic design."
+}

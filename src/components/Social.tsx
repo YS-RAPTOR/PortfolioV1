@@ -26,7 +26,7 @@ const socials = [
                 </g>
             </g>
         ),
-        link: "https://www.linkedin.com/in/yashan-sumanaratne-8bb1491ab/",
+        link: "https://www.linkedin.com/in/ys-raptor/",
     },
     {
         svg: (

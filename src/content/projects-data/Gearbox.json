@@ -1,0 +1,12 @@
+{
+    "title": "Gearbox",
+    "link": "None",
+    "technologies": [
+        "SolidWorks",
+        "Lazar Cutter"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "None",
+    "description": "In a university group project focused on engineering innovation, I assumed the role of group leader and led the development of a compact and high-speed gearbox. Our challenge was to construct a gearbox using acrylic materials capable of lifting a five-kilogram load up a 45-degree incline over a distance of 1 meter.\n\nMy primary responsibilities included the design of the gear system and the layout of components within the gearbox using SolidWorks. The design dimensions were constrained to a remarkably compact 40mm cube, and our team's dedication to innovation paid off as our design received recognition as the most compact among all the project submissions.\n\nThe gearbox employed spur gears and functioned as a gear train to transmit power effectively. A testament to our commitment, our team built the gearbox entirely from scratch, meticulously laser-cutting the acrylic components and skillfully assembling them with precision. This hands-on construction process also imparted crucial lessons about the significance of design for manufacturability. We iterated on the design to ensure ease of assembly, a valuable insight into real-world engineering challenges. However, despite our best efforts and innovative approach, the gearbox faced a formidable challenge during testing. Unfortunately, the system encountered an unexpected setback when the load's string snapped under stress, becoming entangled within the gears, ultimately resulting in the gears' destruction.\n\nWhile our project did not achieve the desired outcome in this instance, it highlighted our dedication to pushing the boundaries of engineering design and our ability to tackle complex challenges as a team. It underscores my ability to lead a team towards a common goal, leveraging my skills in design, problem-solving, and hands-on construction. While setbacks are an inherent part of any endeavor, this project highlights my resilience and adaptability in the face of adversity. It's a testament to my unwavering dedication to continuous improvement and my capacity to transform failures into invaluable learning experiences."
+}
