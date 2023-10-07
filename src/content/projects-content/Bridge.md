@@ -5,17 +5,17 @@ To embark on this ambitious endeavor, I turned to Blender, a powerful 3D modelin
 The breakthrough in my design involved strategically stacking popsicle sticks to enhance the overall strength of the bridge. This innovative approach allowed for the creation of a robust and efficient load-bearing structure.
 
 - Diagonal Links: I incorporated diagonal links into the design to reinforce the structure's stability.
-  ![Diagonal Links](Bridge1.webp "Diagonal Links")
+  ![Diagonal Links](/Bridge1.webp "Diagonal Links")
 - Chords: The chord configurations were carefully designed to distribute the load evenly and ensure structural integrity.
-  ![Chord](Bridge2.webp "Chord")
+  ![Chord](/Bridge2.webp "Chord")
 - Vertical Members: The vertical members of the truss had two distinct configurations, both meticulously planned to enhance the bridge's load-bearing capacity.
-  ![Vertical Links](Bridge3.webp "Vertical Links")
+  ![Vertical Links](/Bridge3.webp "Vertical Links")
 
 I methodically assembled these components, connecting diagonal links, vertical links, and chords to create the bridge's framework.
-![One Part](Bridge4.webp "One Part")
+![One Part](/Bridge4.webp "One Part")
 
 These elements were carefully orchestrated, culminating in the final bridge model, which met both span and width requirements, weighing a mere 397g.
-![Final Bridge](Bridge5.webp "Final Bridge")
+![Final Bridge](/Bridge5.webp "Final Bridge")
 
 The most remarkable aspect of this design was the strategic stacking of popsicle sticks, elevating the bridge's strength and surpassing the weight-to-load ratio goals.
 

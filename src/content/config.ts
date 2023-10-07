@@ -13,6 +13,11 @@ const projectsCollection = defineCollection({
     }),
 });
 
+const projectsContent = defineCollection({
+    type: "content",
+})
+
 export const collections = {
     'projects-data' : projectsCollection,
+    'projects-content' : projectsContent
 };

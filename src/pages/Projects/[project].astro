@@ -6,7 +6,7 @@ import Background from "../../components/Background";
 import Footer from "../../components/Footer.astro";
 
 export async function getStaticPaths() {
-	const Projects = await getCollection("projects");
+	const Projects = await getCollection("projects-content");
 	return Projects.map((project) => ({
 		params: {
 			project: project.slug,
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-	project: CollectionEntry<"projects">;
+	project: CollectionEntry<"projects-content">;
 }
 
 const { project } = Astro.props;
