@@ -119,7 +119,7 @@ const Projects = ({ projectsInfoResponse }: { projectsInfoResponse: CollectionEn
                                         <div className="flex justify-around items-start h-full gap-10 flex-wrap content-start">
                                             {projectsInfo.map((project, index) => {
                                                 return (
-                                                    <ProjectIcon key={index} icon={"Portfolio/projects/"+project.id+".webp"} text={project.data.title} onButtonClick={() => {setSelected(index)}}/>
+                                                    <ProjectIcon key={index} icon={"/Portfolio/projects/"+project.id+".webp"} text={project.data.title} onButtonClick={() => {setSelected(index)}}/>
                                                 );
                                             })}
                                         </div>
