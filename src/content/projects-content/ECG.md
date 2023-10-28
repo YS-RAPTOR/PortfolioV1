@@ -10,24 +10,24 @@ To achieve this ambitious goal, I established several critical objectives:
 - Information Display: The project aimed to present the results of the analysis in an easily comprehensible format.
 - Results Evaluation: The system was designed to provide commentary on the normalcy of the results obtained.
 
-![ECG signal features](/ECG1.webp "ECG Signal")
+![ECG signal features](ECG1.webp "ECG Signal")
 
 Efficient noise filtering and precise artifact labeling primarily catered to the needs of medical professionals in their analytical endeavors. However, the information extracted had the potential to benefit both medical practitioners and laypersons alike. Furthermore, the commentary on result normalcy was intended to empower individuals with a deeper understanding of the data's significance.
 
 To execute these objectives effectively, the project was logically divided into two distinct components: the Heart Rate Monitor and the Heart Rate Analyzer. The Heart Rate Monitor was dedicated to the accurate reporting of Heart Rates from the supplied data, with precision as the top priority. In contrast, the Heart Rate Analyzer bore the responsibility of artifact labeling, data extraction, result presentation, and normalcy assessment.
 
-![Data Before and After Filter](/ECG2.webp "Comparison of Before and After Filtration")
+![Data Before and After Filter](ECG2.webp "Comparison of Before and After Filtration")
 
 The final filter design incorporated a bandpass Butterworth filter with cutoff frequencies set at 0.5Hz to eliminate baseline wander and 10Hz to mitigate high-frequency noise often induced by powerline interference. The filter order was determined through a series of experiments and fine-tuning, striking a balance between noise reduction and signal detail preservation. Ultimately, a filter order of three was selected for optimal performance.
 
-![Broad Overview of how the FindQRS Function Works](/ECG3.webp "FindQRS Function")
+![Broad Overview of how the FindQRS Function Works](ECG3.webp "FindQRS Function")
 
 The flow chart above outlines the core operation of the algorithm. While the algorithm performed admirably with the initial data sample, it faced challenges when tested with other datasets. In certain cases, it missed detecting some R peaks, prompting necessary adjustments to the constants used in pass 1 and pass 2. Additionally, a biological constant was introduced, setting the minimum distance between two R peaks at 0.16s.
 
 The selection of a threshold analysis approach over alternative methods, such as RR Interval analysis, was driven by its simplicity and efficiency. RR Interval analysis often encountered difficulties when confronted with samples containing irregular RR Intervals, leading to its exclusion. Furthermore, the chosen threshold analysis method consistently demonstrated superior performance and efficiency compared to RR Interval Analysis.
 
-![Broad Overview of how the FindPT Function Works](/ECG4.webp "FindPT function")
-![Broad Overview of How the DetectPT Function Works](/ECG5.webp "DetectPT function")
+![Broad Overview of how the FindPT Function Works](ECG4.webp "FindPT function")
+![Broad Overview of How the DetectPT Function Works](ECG5.webp "DetectPT function")
 
 The architecture of the algorithm, as depicted in the flow chart, underwent iterations. Initially, it relied solely on amplitude for peak identification. However, it later evolved to consider the distance of each peak from the center. This adaptation was necessitated by the presence of numerous noise peaks with high amplitudes in certain samples, which negatively impacted results.
 

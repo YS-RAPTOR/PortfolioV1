@@ -1,4 +1,4 @@
-![Calculator](/Calculator.webp "Calculator")
+![Calculator](Calculator.webp "Calculator")
 
 In this project, our team embarked on the ambitious task of developing a feature-rich calculator system that incorporated a keypad, an LCD display, and an Arduino Mega Microcontroller. The project aimed to provide a comprehensive solution, capable of performing basic calculations, handling memory operations, and supporting a minimum of three operands. Notably, the system was designed with robust security features, including password protection with the flexibility to change the password as needed.
 
