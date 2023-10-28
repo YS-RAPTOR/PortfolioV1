@@ -1,0 +1,16 @@
+{
+    "title": "Portfolio",
+    "link": "https://github.com/YS-RAPTOR/Portfolio",
+    "technologies": [
+        "Astro",
+        "Tailwind",
+        "React",
+        "Framer-Motion",
+        "Three.js",
+        "OpenGL"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "https://ys-raptor.github.io/Portfolio/",
+    "description": "My portfolio website is a dynamic showcase of my web development and design skills, featuring an engaging and interactive background running Conway's Game of Life. The site was meticulously crafted using a combination of cutting-edge technologies to provide a seamless user experience.\n\nThe foundation of the website was built upon the Astro framework, a static site generator that helped create a clean and modern website structure, ensuring optimal performance.\n\nReact played a crucial role in the development process, allowing for the creation of reusable components, thereby streamlining development and enhancing site maintainability.\n\nTailwindCSS was employed for styling, enabling the creation of a consistent and responsive design system with minimal custom CSS. This ensured a polished and professional appearance.\n\nFramer Motion was a key addition to the website, bringing life to it with smooth and fluid animations. These animations not only contributed to a seamless user experience but also added an elegant touch to the overall design.\n\nThe centerpiece of the website is an interactive background running Conway's Game of Life, powered by Three.js and GLSL/OpenGL. This captivating visual element not only adds interactivity but also showcases creative coding skills.\n\nThe resulting portfolio website is a testament to my proficiency in web development, design, animation, and creative coding. It exemplifies my capability to create visually engaging and interactive websites using a diverse set of tools and technologies. The combination of these elements creates a compelling and memorable user experience that highlights my expertise in the field."
+}

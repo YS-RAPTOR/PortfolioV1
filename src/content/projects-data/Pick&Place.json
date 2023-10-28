@@ -1,0 +1,17 @@
+{
+    "title": "Pick&Place Robot",
+    "link": "https://github.com/YS-RAPTOR/Pick-PlaceRobot",
+    "technologies": [
+        "SolidWorks",
+        "Lazar Cutter",
+        "3D Printing",
+        "LABVIEW",
+        "NI",
+        "MATLAB",
+        "PID"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "https://www.youtube.com/watch?v=bwQdo1WK1JE",
+    "description": "In a university assignment, I took the lead in a team effort to design and implement a pick and place robot system. Our objective was to transfer components from a loading bay to an unloading bay while keeping an accurate count of the components delivered. The project required the orchestration of hardware, software, and control systems.\n\nThe robot's routine was structured as follows: Pick a component from the loading bay, transport the component to a central location, pause for 2 seconds, move the component to the unloading bay and deposit it, and finally, return to the loading bay for the next cycle.\n\nI was responsible for developing all control systems and programming for the project. Given the hardware constraints, particularly the utilization of the NI MyRIO microprocessor, I chose to implement the control system using LABVIEW. The solution was a state machine that effectively executed all the required operations, ensuring smooth and precise component transfer.\n\nTo optimize the system's performance, I also conducted model identification using MATLAB, which enabled the creation of a PID (Proportional-Integral-Derivative) controller. Through trial and error, I fine-tuned this controller, ensuring the robot's precise and efficient operation.\n\nIn addition to the software and control aspects, I contributed to the physical component modeling using SolidWorks. This involved designing parts that were later 3D printed or laser-cut as required, ensuring that the robot's mechanical components were accurate and functional.\n\nAs a result, our team achieved an impressive throughput of 21 components per minute, with an action time of just 850 milliseconds. This project reflects my ability to lead a multidisciplinary team, combining expertise in software development, control systems, and mechanical design to successfully tackle complex challenges and deliver a high-performing solution. It also highlights my ability to learn new skills and technologies quickly, as I had no prior experience with LABVIEW before this project."
+}

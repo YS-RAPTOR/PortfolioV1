@@ -1,0 +1,16 @@
+{
+    "title": "Super Auto Pet API",
+    "link": "https://github.com/YS-RAPTOR/SAP_API",
+    "technologies": [
+        "Python",
+        "Selenium",
+        "OpenCV",
+        "Tesseract",
+        "Sockets",
+        "Pillow"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "None",
+    "description": "In a creative venture, I developed an API that facilitates interaction with the popular game \"Super Auto Pets\" using Python. This API harnesses a diverse set of technologies to bridge the digital gap between the game and Python.\n\nTo extract essential text information from the game, Tesseract, an Optical Character Recognition (OCR) tool, was integrated. This capability enabled the API to interpret in-game text, enhancing its functionality.\n\nOpenCV played a pivotal role in image processing tasks, allowing the API to manipulate and analyze game visuals. This image processing functionality facilitated the automation of various in-game actions.\n\nFor seamless interaction with the web version of the game, Selenium was utilized. This allowed the API to simulate user actions, navigate the game interface, and automate gameplay elements.\n\nPillow served as the image storage and manipulation library, facilitating the storage of game-related images and their efficient processing as needed.\n\nAn innovative feature of this API is its TCP socket server mode, allowing users to establish a server-client connection, following a predefined protocol, which can then be used to interact with the game remotely. This adds versatility and extensibility to the API's capabilities.\n\nThis project reflects my ability to integrate a range of technologies to create a comprehensive solution for interacting with a popular game using Python. It required expertise in image processing, OCR, web automation, and network communication. The API opens up new possibilities for automating gameplay and interacting with \"Super Auto Pets\" programmatically, enhancing the gaming experience."
+}
