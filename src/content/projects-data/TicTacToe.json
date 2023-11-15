@@ -1,0 +1,14 @@
+{
+    "title": "Tic Tac Toe Visualization",
+    "link": "https://github.com/YS-RAPTOR/Hand-Eye-Coordination-Project",
+    "technologies": [
+        "OpenCV",
+        "C++",
+        "RAPID Code",
+        "ABB IRB120"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "https://www.youtube.com/watch?v=WHHzf1fmyfo",
+    "description": "In a unique project, My team conceptualized and developed an interactive Tic Tac Toe visualization that combined robotics, image recognition, and serial communication. The project involved a robotic arm dynamically representing a game of Tic Tac Toe played by two participants. The visual aspect was enriched as the robotic arm moved colored blocks onto a 3x3 board, each block symbolizing a player's move.\n\nTo enhance the gaming experience, players were designated colored blocks \u2014 red/yellow for 'X' and green/blue for 'O.' A terminal interface facilitated the game itself, allowing the two players to strategically engage in Tic Tac Toe. Serial communication was implemented to transmit the player's move from the terminal to the robotic arm.\n\nThe visual representation was brought to life through the integration of a camera feed. Using color-based object segmentation techniques with OpenCV, the system accurately determined the colored block that needs to be moved corresponding to the player's move. This successful amalgamation of image recognition, serial communication, terminal interface, and robotic arm control resulted in a captivating visualization of a Tic Tac Toe game."
+}
