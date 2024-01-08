@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import GOLRender from "../webgl/GOLRender";
+import type { Event } from "three";
 
 const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
     const GOLCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -27,9 +28,8 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
             addEventListener("touchend", GOL.onTouchEnd);
             addEventListener("touchcancel", GOL.onTouchEnd);
         }
-        
-        // Setting up Resize Event
-        addEventListener("resize", (event) => {
+
+        const resizeEvent = () => {
             GOLCanvas.width = 360;
             GOLCanvas.height = 360;
             GOL.resize();
@@ -41,9 +41,25 @@ const Background = ({ fps, scale = 5 }: { fps: number; scale: number }) => {
 
             GOL.resize();
             dispatchEvent(new Event("resize-correct"));
-        });
+        }        
+        // Setting up Resize Event
+        addEventListener("resize", resizeEvent);
 
         requestAnimationFrame(GOL.render);
+
+        return () => {
+            removeEventListener("mousemove", GOL.onMouseMove);
+            removeEventListener("mousedown", GOL.onMouseMove);
+            removeEventListener("mouseup", GOL.onMouseMove);
+            if (navigator.maxTouchPoints > 0) {
+                removeEventListener("touchmove", GOL.onTouch);
+                removeEventListener("touchstart", GOL.onTouch);
+                removeEventListener("touchend", GOL.onTouchEnd);
+                removeEventListener("touchcancel", GOL.onTouchEnd);
+            }
+            removeEventListener("resize", resizeEvent);
+        };
+
     }, []);
 
     return (

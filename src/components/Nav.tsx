@@ -70,11 +70,17 @@ const Nav = () => {
     const [isOpen, setOpen] = useState(false);
 
     useEffect(() => {
-        addEventListener("resize-correct", (event) => {
+        const resizeCorrectEvent = () => {
             if (window.innerWidth >= 850) {
                 setOpen(false);
             }
-        });
+        }
+
+        addEventListener("resize-correct", resizeCorrectEvent);
+
+        return () => {
+            removeEventListener("resize-correct", resizeCorrectEvent);
+        }
     }, []);
 
     return (
