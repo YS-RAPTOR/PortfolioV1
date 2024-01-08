@@ -1,8 +1,6 @@
 import GlitchTextStaggered from "./GlitchTextStaggered";
-import { useEffect } from "react";
 
 const Hero = () => {
-	useEffect(() => {}, []);
 
 	return (
 		<div className="flex h-full w-full flex-grow">

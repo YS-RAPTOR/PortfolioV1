@@ -1,0 +1,15 @@
+{
+    "title": "Slitherai",
+    "link": "https://github.com/YS-RAPTOR/Slitherai",
+    "technologies": [
+        "Raylib",
+        "Rust",
+        "Python",
+        "Pyo3",
+        "UDP Sockets"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "None",
+    "description": "I crafted a multiplayer Slither.io clone using Python, with a strong emphasis on robust architecture and performance optimization. The rendering prowess came from the Raylib library, ensuring a visually engaging and responsive gaming experience. The game's architecture leveraged an Entity Component model, where entities stored their components, fostering modularity and maintainability.\n\nFor seamless communication between clients and servers, I implemented UDP sockets, prioritizing real-time interaction. The data serialization between the server and components was handled through Rust, showcasing a hybrid language approach to capitalize on each language's strengths.\n\nTo enhance the gaming experience, a dedicated Rust library was created to detect collisions between various game objects, with specific focus on circular collisions. The collision system efficiently utilized a uniform grid, strategically partitioning objects for optimized collision detection. This significantly improved performance.\n\nThe multiplayer environment extends beyond human players, featuring an AI component actively being trained within the game environment. This integration of AI demonstrates not only my proficiency in game development but also my commitment to exploring and implementing cutting-edge technologies. In choosing to work with me, you gain a developer who not only excels in creating engaging and performant games but also brings innovation, adaptability, and a forward-thinking mindset to your projects."
+}
