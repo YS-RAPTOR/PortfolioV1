@@ -106,7 +106,7 @@ const {GenerateNavigation = true, UsePDF = false} = Astro.props;
 	<body class="relative overflow-x-hidden">
 		{GenerateNavigation &&
             <Nav client:load />
-            <Background fps={12} scale={7} client:load />
+            <Background fps={12} scale={12} client:load />
             <div class="bar:ml-16 font-mono">
                 <slot />
             </div>

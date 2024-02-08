@@ -1,0 +1,19 @@
+{
+    "title": "Theme-Journal",
+    "link": "https://github.com/YS-RAPTOR/Theme-Journal",
+    "technologies": [
+        "C#",
+        ".NET",
+        "Dapper",
+        "React",
+        "TypeScript",
+        "MySQL",
+        "Postgresql",
+        "MSAL",
+        "Azure AD B2C"
+    ],
+    "rank": 0,
+    "draft": true,
+    "demo": "https://theme-journal.pages.dev/",
+    "description": "I developed a journal website leveraging React for the Single Page Application (SPA) frontend and .NET for the backend. Authentication was facilitated through Azure Active Directory and msal.js, ensuring secure access for users. The website features a seamless transition between a landing page for non-authenticated users and a personalized home page upon authentication. Prioritizing accessibility, I integrated Radix UI into the frontend to enhance user experience.\n\nOptimistic updates for all mutations were implemented using Tanstack query, enhancing the website's responsiveness and user interaction. Tailwind was utilized for efficient styling of components, while the shadcn component library provided additional functionality. The backend database was powered by MySQL, ensuring robust data management.\n\nBoth frontend and backend codebases were written in TypeScript and C# respectively, leveraging their strong typing capabilities for enhanced code integrity and maintainability. This project not only demonstrates my proficiency in modern web development technologies but also showcases my attention to detail in implementing best practices for user experience, security, and performance."
+}
