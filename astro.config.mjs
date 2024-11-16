@@ -13,5 +13,5 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
 	integrations: [tailwind(), react(), mdx()],
 	site: "https://ys-raptor.github.io",
-	base: "/Portfolio",
+	base: "/PortfolioV1",
 });
