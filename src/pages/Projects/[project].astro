@@ -22,13 +22,13 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { Content, headings } = await project.render();
+const { Content} = await project.render();
 ---
 
 <html lang="en" class="scroll-smooth 3xl:text-lg 3xl:font-semibold">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/Portfolio/icon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/PortfolioV1/icon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{project.data.title}</title>

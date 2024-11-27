@@ -1,17 +1,17 @@
+// @ts-check
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
+import react from "@astrojs/react";
+
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
-import react from "@astrojs/react";
-
-// https://astro.build/config
-import mdx from "@astrojs/mdx";
-
-// https://astro.build/config
 export default defineConfig({
-	integrations: [tailwind(), react(), mdx()],
+	integrations: [react(), tailwind()],
 	site: "https://ys-raptor.github.io",
 	base: "/PortfolioV1",
+	server: {
+		port: 8080,
+		host: true,
+	},
 });
