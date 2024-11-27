@@ -23,5 +23,6 @@
 		"tailwindcss": "^3.4.15",
 		"three": "^0.170.0",
 		"typescript": "^5.7.2"
-	}
+	},
+	"packageManager": "pnpm@9.14.2"
 }
